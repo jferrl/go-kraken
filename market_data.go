@@ -23,5 +23,4 @@ func (md *MarketData) Time(ctx context.Context) (*ServerTime, error) {
 	}
 
 	return &v, nil
-
 }
