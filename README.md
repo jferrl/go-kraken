@@ -5,7 +5,9 @@
 [![CodeQL](https://github.com/jferrl/go-kraken/workflows/CodeQL/badge.svg)](https://github.com/jferrl/go-kraken/actions?query=workflow%3ACodeQL)
 [![codecov](https://codecov.io/gh/jferrl/go-kraken/branch/main/graph/badge.svg?token=68I4BZF235)](https://codecov.io/gh/jferrl/go-kraken)
 
-Go library for accessing the Kraken API
+Go library for accessing the Kraken API.
+
+Docs url <https://docs.kraken.com/rest/>.
 
 ## Usage
 
