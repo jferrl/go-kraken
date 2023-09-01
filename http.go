@@ -62,16 +62,13 @@ func (c *Client) do(req *http.Request, v any) error {
 
 func decodeResponse(r *http.Response, v any) error {
 	var resource Resource
+
+	resource.Result = v
+
 	err := json.NewDecoder(r.Body).Decode(&resource)
 	if err != nil && err != io.EOF {
 		return err
 	}
 
-	if err := resource.Error(); err != nil {
-		return err
-	}
-
-	v = resource.Result
-
-	return nil
+	return resource.Error()
 }
