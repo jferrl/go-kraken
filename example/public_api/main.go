@@ -10,7 +10,7 @@ import (
 func main() {
 	ctx := context.Background()
 
-	c := kraken.NewClient(nil)
+	c := kraken.New(nil)
 
 	// Get server time
 	st, err := c.MarketData.Time(ctx)
