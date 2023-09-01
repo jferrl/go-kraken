@@ -33,21 +33,10 @@ func NewSigner(s string) *Signer {
 // Sign signs the Kraken API request.
 // Docs: https://www.kraken.com/help/api#general-usage for more information
 func (s *Signer) Sign(v url.Values, path string) string {
-	shaSum := Sha256([]byte(v.Get(NonceKey) + v.Encode()))
-	macSum := HMacSha512(s.Secret, append([]byte(path), shaSum...))
-	return base64.StdEncoding.EncodeToString(macSum)
-}
-
-// Sha256 returns the SHA256 hash of the secret.
-func Sha256(input []byte) []byte {
 	sha := sha256.New()
-	sha.Write(input)
-	return sha.Sum(nil)
-}
+	sha.Write([]byte(v.Get(NonceKey) + v.Encode()))
 
-// HMacSha512 returns the HMAC-SHA512 hash of the secret and message.
-func HMacSha512(s, message []byte) []byte {
-	mac := hmac.New(sha512.New, s)
-	mac.Write(message)
-	return mac.Sum(nil)
+	mac := hmac.New(sha512.New, s.Secret)
+	mac.Write(append([]byte(path), sha.Sum(nil)...))
+	return base64.StdEncoding.EncodeToString(mac.Sum(nil))
 }
