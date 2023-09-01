@@ -6,22 +6,22 @@ type ServerTime struct {
 	Rfc1123  string `json:"rfc1123"`
 }
 
-// SystemStatus represents the system status.
-type SystemStatus string
+// ServerStatus represents the system status.
+type ServerStatus string
 
 const (
 	//Online means Kraken is operating normally. All order types may be submitted and trades can occur.
-	Online SystemStatus = "online"
+	Online ServerStatus = "online"
 	// Maintenance means exchange is offline. No new orders or cancellations may be submitted.
-	Maintenance SystemStatus = "maintenance"
+	Maintenance ServerStatus = "maintenance"
 	// CancelOnly means resting (open) orders can be cancelled but no new orders may be submitted. No trades will occur.
-	CancelOnly SystemStatus = "cancel_only"
+	CancelOnly ServerStatus = "cancel_only"
 	// PostOnly means only post-only limit orders can be submitted. Existing orders may still be cancelled. No trades will occur.
-	PostOnly SystemStatus = "post_only"
+	PostOnly ServerStatus = "post_only"
 )
 
-// CurrentSystemStatus represents the current system status.
-type CurrentSystemStatus struct {
-	Status    SystemStatus `json:"status"`
+// SystemStatus represents the current system status.
+type SystemStatus struct {
+	Status    ServerStatus `json:"status"`
 	Timestamp string       `json:"timestamp"` // Current timestamp (RFC3339)
 }
