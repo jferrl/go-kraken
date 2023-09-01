@@ -6,7 +6,8 @@ import (
 )
 
 const (
-	defaultURL = "https://api.kraken.com/0/"
+	defaultURL        = "https://api.kraken.com/"
+	defaultAPIVersion = "0"
 
 	userAgent = "go-kraken"
 )
@@ -32,7 +33,8 @@ type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// Services used for talking to different parts of the Kraken API.
-	MarketData *MarketData
+	Market  *Market
+	Account *Account
 }
 
 type service struct {
@@ -42,7 +44,7 @@ type service struct {
 // New returns new Kraken API client.If a nil httpClient is
 // provided, a new http.Client will be used.
 func New(httpClient *http.Client) *Client {
-	baseURL, _ := url.Parse(defaultURL)
+	baseURL, _ := url.Parse(defaultURL + defaultAPIVersion + "/")
 
 	if httpClient == nil {
 		httpClient = &http.Client{}
@@ -55,7 +57,8 @@ func New(httpClient *http.Client) *Client {
 
 	c.common.client = c
 
-	c.MarketData = (*MarketData)(&c.common)
+	c.Market = (*Market)(&c.common)
+	c.Account = (*Account)(&c.common)
 
 	return c
 }

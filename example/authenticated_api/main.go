@@ -10,10 +10,13 @@ import (
 func main() {
 	ctx := context.Background()
 
-	c := kraken.New(nil)
+	c := kraken.New(nil).
+		WithAuth(
+			kraken.Secrets{},
+		)
 
 	// Get server time
-	st, err := c.Market.Time(ctx)
+	st, err := c.Account.Balance(ctx)
 	if err != nil {
 		fmt.Println(err)
 		return

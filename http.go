@@ -3,8 +3,12 @@ package kraken
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
+	"net/url"
+	"strings"
+	"time"
 )
 
 // Resource represents a Kraken response.
@@ -24,10 +28,20 @@ func (r *Resource) Error() error {
 	}
 }
 
-func (c *Client) newPublicRequest(ctx context.Context, method string, path string, body io.Reader) (*http.Request, error) {
-	url := c.baseURL.String() + "public/" + path
+func (c *Client) buildPublicURL(path string) *url.URL {
+	u, _ := url.Parse(fmt.Sprintf("%spublic/%s", c.baseURL.String(), path))
+	return u
+}
 
-	req, err := http.NewRequestWithContext(ctx, method, url, body)
+func (c *Client) buildPrivateURL(path string) *url.URL {
+	u, _ := url.Parse(fmt.Sprintf("%sprivate/%s", c.baseURL.String(), path))
+	return u
+}
+
+func (c *Client) newPublicRequest(ctx context.Context, method string, path string, body io.Reader) (*http.Request, error) {
+	reqURL := c.buildPublicURL(path).String()
+
+	req, err := http.NewRequestWithContext(ctx, method, reqURL, body)
 	if err != nil {
 		return nil, err
 	}
@@ -38,6 +52,25 @@ func (c *Client) newPublicRequest(ctx context.Context, method string, path strin
 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", userAgent)
+
+	return req, nil
+}
+
+func (c *Client) newPrivateRequest(ctx context.Context, method string, path string, body url.Values) (*http.Request, error) {
+	reqURL := c.buildPrivateURL(path)
+
+	body.Set(NonceKey, fmt.Sprintf("%d", time.Now().UnixNano()))
+
+	req, err := http.NewRequestWithContext(ctx, method, reqURL.String(), strings.NewReader(body.Encode()))
+	if err != nil {
+		return nil, err
+	}
+
+	signature := c.signer.Sign(body, reqURL.Path)
+
+	req.Header.Set("API-Key", string(c.apiKey))
+	req.Header.Set("API-Sign", signature)
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded; charset=utf-8")
 
 	return req, nil
 }

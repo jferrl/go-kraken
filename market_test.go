@@ -56,7 +56,7 @@ func TestMarketData_Time(t *testing.T) {
 			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
-			got, err := c.MarketData.Time(tt.args.ctx)
+			got, err := c.Market.Time(tt.args.ctx)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MarketData.Time() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -105,7 +105,7 @@ func TestMarketData_SystemStatus(t *testing.T) {
 			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
-			got, err := c.MarketData.SystemStatus(tt.args.ctx)
+			got, err := c.Market.SystemStatus(tt.args.ctx)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MarketData.SystemStatus() error = %v, wantErr %v", err, tt.wantErr)
 				return
