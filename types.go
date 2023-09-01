@@ -68,3 +68,71 @@ type AccountBalance struct {
 	ETH2  float64 `json:"ETH2,string"`
 	USDM  float64 `json:"USD.M,string"`
 }
+
+// OrderType represents the order type.
+type OrderType string
+
+const (
+	Market          OrderType = "market"
+	Limit           OrderType = "limit"
+	StopLoss        OrderType = "stop-loss"
+	TakeProfit      OrderType = "take-profit"
+	StopLossLimit   OrderType = "stop-loss-limit"
+	TakeProfitLimit OrderType = "take-profit-limit"
+	SettlePosition  OrderType = "settle-position"
+)
+
+// OrderDirection defines the order direction.
+type OrderDirection string
+
+const (
+	Buy  OrderDirection = "buy"
+	Sell OrderDirection = "sell"
+)
+
+// OrderTrigger defines the order trigger.
+type OrderTrigger string
+
+const (
+	Index OrderTrigger = "index"
+	Last  OrderTrigger = "last"
+)
+
+// StopType defines the stop price type.
+type StopType string
+
+const (
+	CancelNewest StopType = "cancel-newest"
+	CancelOldest StopType = "cancel-oldest"
+	CancelBoth   StopType = "cancel-both"
+)
+
+// TimeInForce defines the time in force.
+type TimeInForce string
+
+const (
+	GoodTillCancelled TimeInForce = "GTC"
+	ImmediateOrCancel TimeInForce = "IOC"
+	GoodTillDate      TimeInForce = "GTD"
+)
+
+// OrderDescription defines an orders description.
+type OrderDescription struct {
+	AssetPair      string `json:"pair"`
+	Close          string `json:"close"`
+	Leverage       string `json:"leverage"`
+	Order          string `json:"order"`
+	OrderType      string `json:"ordertype"`
+	PrimaryPrice   string `json:"price"`
+	SecondaryPrice string `json:"price2"`
+	Type           string `json:"type"`
+}
+
+// TransactionID defines a transaction ID.
+type TransactionID string
+
+// AddOrderResponse defines the response from the AddOrder method.
+type AddOrderResponse struct {
+	Description OrderDescription `json:"descr"`
+	Transaction []TransactionID  `json:"txid"`
+}

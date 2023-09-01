@@ -5,13 +5,13 @@ import (
 	"net/http"
 )
 
-// Market handles communication with the market data related
+// MarketData handles communication with the market data related
 // methods of the Kraken API.
-type Market service
+type MarketData service
 
 // Time gets the server time.
 // Docs: https://docs.kraken.com/rest/#tag/Market-Data/operation/getServerTime
-func (m *Market) Time(ctx context.Context) (*ServerTime, error) {
+func (m *MarketData) Time(ctx context.Context) (*ServerTime, error) {
 	req, err := m.client.newPublicRequest(ctx, http.MethodGet, "Time", nil)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func (m *Market) Time(ctx context.Context) (*ServerTime, error) {
 
 // SystemStatus gets the current system status or trading mode.
 // Docs: https://docs.kraken.com/rest/#tag/Market-Data/operation/getSystemStatus
-func (m *Market) SystemStatus(ctx context.Context) (*SystemStatus, error) {
+func (m *MarketData) SystemStatus(ctx context.Context) (*SystemStatus, error) {
 	req, err := m.client.newPublicRequest(ctx, http.MethodGet, "SystemStatus", nil)
 	if err != nil {
 		return nil, err
