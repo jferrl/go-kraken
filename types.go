@@ -131,8 +131,13 @@ type OrderDescription struct {
 // TransactionID defines a transaction ID.
 type TransactionID string
 
-// AddOrderResponse defines the response from the AddOrder method.
-type AddOrderResponse struct {
+// OrderCreation defines the response from the AddOrder method.
+type OrderCreation struct {
 	Description OrderDescription `json:"descr"`
 	Transaction []TransactionID  `json:"txid"`
+}
+
+// OrderCancelation defines the response from the CancelOrder method.
+type OrderCancelation struct {
+	Count int `json:"count"`
 }

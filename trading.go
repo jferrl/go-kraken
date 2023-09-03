@@ -38,7 +38,7 @@ type AddOrderOpts struct {
 
 // AddOrder places a new order.
 // Docs: https://docs.kraken.com/rest/#tag/Trading/operation/addOrder
-func (t *Trading) AddOrder(ctx context.Context, opts AddOrderOpts) (*AddOrderResponse, error) {
+func (t *Trading) AddOrder(ctx context.Context, opts AddOrderOpts) (*OrderCreation, error) {
 	body, err := query.Values(opts)
 	if err != nil {
 		return nil, err
@@ -49,7 +49,33 @@ func (t *Trading) AddOrder(ctx context.Context, opts AddOrderOpts) (*AddOrderRes
 		return nil, err
 	}
 
-	var v AddOrderResponse
+	var v OrderCreation
+	if err := t.client.do(req, &v); err != nil {
+		return nil, err
+	}
+
+	return &v, nil
+}
+
+// CancelOrderOpts represents the parameters to cancel an Order.
+type CancelOrderOpts struct {
+	TransactionID string `url:"txid,omitempty"`
+}
+
+// CancelOrder cancels an order.
+// Docs: https://docs.kraken.com/rest/#tag/Trading/operation/cancelOrder
+func (t *Trading) CancelOrder(ctx context.Context, opts CancelOrderOpts) (*OrderCancelation, error) {
+	body, err := query.Values(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelOrder", body)
+	if err != nil {
+		return nil, err
+	}
+
+	var v OrderCancelation
 	if err := t.client.do(req, &v); err != nil {
 		return nil, err
 	}
