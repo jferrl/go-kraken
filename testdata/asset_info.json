@@ -1,0 +1,2009 @@
+{
+    "error": [],
+    "result": {
+        "1INCH": {
+            "aclass": "currency",
+            "altname": "1INCH",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "AAVE": {
+            "aclass": "currency",
+            "altname": "AAVE",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ACA": {
+            "aclass": "currency",
+            "altname": "ACA",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ACH": {
+            "aclass": "currency",
+            "altname": "ACH",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ADA": {
+            "aclass": "currency",
+            "altname": "ADA",
+            "decimals": 8,
+            "display_decimals": 6,
+            "collateral_value": 0.9,
+            "status": "enabled"
+        },
+        "ADA.S": {
+            "aclass": "currency",
+            "altname": "ADA.S",
+            "decimals": 8,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "ADX": {
+            "aclass": "currency",
+            "altname": "ADX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "AED": {
+            "aclass": "currency",
+            "altname": "AED",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "AED.HOLD": {
+            "aclass": "currency",
+            "altname": "AED.HOLD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "AGLD": {
+            "aclass": "currency",
+            "altname": "AGLD",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "AIR": {
+            "aclass": "currency",
+            "altname": "AIR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "AKT": {
+            "aclass": "currency",
+            "altname": "AKT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ALCX": {
+            "aclass": "currency",
+            "altname": "ALCX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ALGO": {
+            "aclass": "currency",
+            "altname": "ALGO",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ALGO.S": {
+            "aclass": "currency",
+            "altname": "ALGO.S",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ALICE": {
+            "aclass": "currency",
+            "altname": "ALICE",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ALPHA": {
+            "aclass": "currency",
+            "altname": "ALPHA",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "ANKR": {
+            "aclass": "currency",
+            "altname": "ANKR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ANT": {
+            "aclass": "currency",
+            "altname": "ANT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "APE": {
+            "aclass": "currency",
+            "altname": "APE",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "API3": {
+            "aclass": "currency",
+            "altname": "API3",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "APT": {
+            "aclass": "currency",
+            "altname": "APT",
+            "decimals": 6,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "ARB": {
+            "aclass": "currency",
+            "altname": "ARB",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "ARPA": {
+            "aclass": "currency",
+            "altname": "ARPA",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ASTR": {
+            "aclass": "currency",
+            "altname": "ASTR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ATLAS": {
+            "aclass": "currency",
+            "altname": "ATLAS",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ATOM": {
+            "aclass": "currency",
+            "altname": "ATOM",
+            "decimals": 8,
+            "display_decimals": 6,
+            "collateral_value": 0.7,
+            "status": "enabled"
+        },
+        "ATOM.S": {
+            "aclass": "currency",
+            "altname": "ATOM.S",
+            "decimals": 8,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "ATOM21.S": {
+            "aclass": "currency",
+            "altname": "ATOM21.S",
+            "decimals": 8,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "AUD.HOLD": {
+            "aclass": "currency",
+            "altname": "AUD.HOLD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "AUDIO": {
+            "aclass": "currency",
+            "altname": "AUDIO",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "AVAX": {
+            "aclass": "currency",
+            "altname": "AVAX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 0.5,
+            "status": "enabled"
+        },
+        "AVT": {
+            "aclass": "currency",
+            "altname": "AVT",
+            "decimals": 6,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "AXS": {
+            "aclass": "currency",
+            "altname": "AXS",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BADGER": {
+            "aclass": "currency",
+            "altname": "BADGER",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BAL": {
+            "aclass": "currency",
+            "altname": "BAL",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BAND": {
+            "aclass": "currency",
+            "altname": "BAND",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BAT": {
+            "aclass": "currency",
+            "altname": "BAT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BCH": {
+            "aclass": "currency",
+            "altname": "BCH",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BICO": {
+            "aclass": "currency",
+            "altname": "BICO",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BIT": {
+            "aclass": "currency",
+            "altname": "BIT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BLUR": {
+            "aclass": "currency",
+            "altname": "BLUR",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "BLZ": {
+            "aclass": "currency",
+            "altname": "BLZ",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "BNC": {
+            "aclass": "currency",
+            "altname": "BNC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BNT": {
+            "aclass": "currency",
+            "altname": "BNT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BOBA": {
+            "aclass": "currency",
+            "altname": "BOBA",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "BOND": {
+            "aclass": "currency",
+            "altname": "BOND",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "BRICK": {
+            "aclass": "currency",
+            "altname": "BRICK",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "BSX": {
+            "aclass": "currency",
+            "altname": "BSX",
+            "decimals": 2,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "BTT": {
+            "aclass": "currency",
+            "altname": "BTT",
+            "decimals": 1,
+            "display_decimals": 1,
+            "status": "enabled"
+        },
+        "C98": {
+            "aclass": "currency",
+            "altname": "C98",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "CAD.HOLD": {
+            "aclass": "currency",
+            "altname": "CAD.HOLD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "CELR": {
+            "aclass": "currency",
+            "altname": "CELR",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "CFG": {
+            "aclass": "currency",
+            "altname": "CFG",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "CHF": {
+            "aclass": "currency",
+            "altname": "CHF",
+            "decimals": 4,
+            "display_decimals": 2,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "CHF.HOLD": {
+            "aclass": "currency",
+            "altname": "CHF.HOLD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "CHR": {
+            "aclass": "currency",
+            "altname": "CHR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "CHZ": {
+            "aclass": "currency",
+            "altname": "CHZ",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "COMP": {
+            "aclass": "currency",
+            "altname": "COMP",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "COTI": {
+            "aclass": "currency",
+            "altname": "COTI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "CQT": {
+            "aclass": "currency",
+            "altname": "CQT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "CRV": {
+            "aclass": "currency",
+            "altname": "CRV",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "CSM": {
+            "aclass": "currency",
+            "altname": "CSM",
+            "decimals": 6,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "CTSI": {
+            "aclass": "currency",
+            "altname": "CTSI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "CVC": {
+            "aclass": "currency",
+            "altname": "CVC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "CVX": {
+            "aclass": "currency",
+            "altname": "CVX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "DAI": {
+            "aclass": "currency",
+            "altname": "DAI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 0.9,
+            "status": "enabled"
+        },
+        "DASH": {
+            "aclass": "currency",
+            "altname": "DASH",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "DENT": {
+            "aclass": "currency",
+            "altname": "DENT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "DOT": {
+            "aclass": "currency",
+            "altname": "DOT",
+            "decimals": 10,
+            "display_decimals": 8,
+            "collateral_value": 0.9,
+            "status": "enabled"
+        },
+        "DOT.P": {
+            "aclass": "currency",
+            "altname": "DOT.P",
+            "decimals": 10,
+            "display_decimals": 8,
+            "status": "enabled"
+        },
+        "DOT.S": {
+            "aclass": "currency",
+            "altname": "DOT.S",
+            "decimals": 10,
+            "display_decimals": 8,
+            "status": "enabled"
+        },
+        "DOT28.S": {
+            "aclass": "currency",
+            "altname": "DOT28.S",
+            "decimals": 10,
+            "display_decimals": 8,
+            "status": "enabled"
+        },
+        "DYDX": {
+            "aclass": "currency",
+            "altname": "DYDX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "EGLD": {
+            "aclass": "currency",
+            "altname": "EGLD",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ENJ": {
+            "aclass": "currency",
+            "altname": "ENJ",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ENS": {
+            "aclass": "currency",
+            "altname": "ENS",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "EOS": {
+            "aclass": "currency",
+            "altname": "EOS",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ETH2": {
+            "aclass": "currency",
+            "altname": "ETH2",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ETH2.S": {
+            "aclass": "currency",
+            "altname": "ETH2.S",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ETHW": {
+            "aclass": "currency",
+            "altname": "ETHW",
+            "decimals": 7,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "EUL": {
+            "aclass": "currency",
+            "altname": "EUL",
+            "decimals": 6,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "EUR.HOLD": {
+            "aclass": "currency",
+            "altname": "EUR.HOLD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "EUR.M": {
+            "aclass": "currency",
+            "altname": "EUR.M",
+            "decimals": 4,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "EURT": {
+            "aclass": "currency",
+            "altname": "EURT",
+            "decimals": 8,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "EWT": {
+            "aclass": "currency",
+            "altname": "EWT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "FARM": {
+            "aclass": "currency",
+            "altname": "FARM",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "FET": {
+            "aclass": "currency",
+            "altname": "FET",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "FIDA": {
+            "aclass": "currency",
+            "altname": "FIDA",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "FIL": {
+            "aclass": "currency",
+            "altname": "FIL",
+            "decimals": 10,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "FIS": {
+            "aclass": "currency",
+            "altname": "FIS",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "FLOW": {
+            "aclass": "currency",
+            "altname": "FLOW",
+            "decimals": 10,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "FLOW.S": {
+            "aclass": "currency",
+            "altname": "FLOW.S",
+            "decimals": 10,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "FLOW14.S": {
+            "aclass": "currency",
+            "altname": "FLOW14.S",
+            "decimals": 10,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "FLOWH": {
+            "aclass": "currency",
+            "altname": "FLOWH",
+            "decimals": 10,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "FLOWH.S": {
+            "aclass": "currency",
+            "altname": "FLOWH.S",
+            "decimals": 10,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "FLR": {
+            "aclass": "currency",
+            "altname": "FLR",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "FLR.S": {
+            "aclass": "currency",
+            "altname": "FLR.S",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "FORTH": {
+            "aclass": "currency",
+            "altname": "FORTH",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "FTM": {
+            "aclass": "currency",
+            "altname": "FTM",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "FXS": {
+            "aclass": "currency",
+            "altname": "FXS",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GAL": {
+            "aclass": "currency",
+            "altname": "GAL",
+            "decimals": 6,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "GALA": {
+            "aclass": "currency",
+            "altname": "GALA",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GARI": {
+            "aclass": "currency",
+            "altname": "GARI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GBP.HOLD": {
+            "aclass": "currency",
+            "altname": "GBP.HOLD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "GHST": {
+            "aclass": "currency",
+            "altname": "GHST",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GLMR": {
+            "aclass": "currency",
+            "altname": "GLMR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GMT": {
+            "aclass": "currency",
+            "altname": "GMT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GMX": {
+            "aclass": "currency",
+            "altname": "GMX",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GNO": {
+            "aclass": "currency",
+            "altname": "GNO",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GRT": {
+            "aclass": "currency",
+            "altname": "GRT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GRT.S": {
+            "aclass": "currency",
+            "altname": "GRT.S",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GRT28.S": {
+            "aclass": "currency",
+            "altname": "GRT28.S",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GST": {
+            "aclass": "currency",
+            "altname": "GST",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "GTC": {
+            "aclass": "currency",
+            "altname": "GTC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "HDX": {
+            "aclass": "currency",
+            "altname": "HDX",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "HFT": {
+            "aclass": "currency",
+            "altname": "HFT",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "ICP": {
+            "aclass": "currency",
+            "altname": "ICP",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ICX": {
+            "aclass": "currency",
+            "altname": "ICX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "IDEX": {
+            "aclass": "currency",
+            "altname": "IDEX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "IMX": {
+            "aclass": "currency",
+            "altname": "IMX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "INJ": {
+            "aclass": "currency",
+            "altname": "INJ",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "INTR": {
+            "aclass": "currency",
+            "altname": "INTR",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "JASMY": {
+            "aclass": "currency",
+            "altname": "JASMY",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "JUNO": {
+            "aclass": "currency",
+            "altname": "JUNO",
+            "decimals": 6,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KAR": {
+            "aclass": "currency",
+            "altname": "KAR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KAVA": {
+            "aclass": "currency",
+            "altname": "KAVA",
+            "decimals": 8,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "KAVA.S": {
+            "aclass": "currency",
+            "altname": "KAVA.S",
+            "decimals": 8,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "KAVA21.S": {
+            "aclass": "currency",
+            "altname": "KAVA21.S",
+            "decimals": 8,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "KEEP": {
+            "aclass": "currency",
+            "altname": "KEEP",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KEY": {
+            "aclass": "currency",
+            "altname": "KEY",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KFEE": {
+            "aclass": "currency",
+            "altname": "FEE",
+            "decimals": 2,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "KILT": {
+            "aclass": "currency",
+            "altname": "KILT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KIN": {
+            "aclass": "currency",
+            "altname": "KIN",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KINT": {
+            "aclass": "currency",
+            "altname": "KINT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KNC": {
+            "aclass": "currency",
+            "altname": "KNC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KP3R": {
+            "aclass": "currency",
+            "altname": "KP3R",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "KSM": {
+            "aclass": "currency",
+            "altname": "KSM",
+            "decimals": 10,
+            "display_decimals": 8,
+            "status": "enabled"
+        },
+        "KSM.P": {
+            "aclass": "currency",
+            "altname": "KSM.P",
+            "decimals": 10,
+            "display_decimals": 8,
+            "status": "enabled"
+        },
+        "KSM.S": {
+            "aclass": "currency",
+            "altname": "KSM.S",
+            "decimals": 10,
+            "display_decimals": 8,
+            "status": "enabled"
+        },
+        "KSM07.S": {
+            "aclass": "currency",
+            "altname": "KSM07.S",
+            "decimals": 10,
+            "display_decimals": 8,
+            "status": "enabled"
+        },
+        "LCX": {
+            "aclass": "currency",
+            "altname": "LCX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "LDO": {
+            "aclass": "currency",
+            "altname": "LDO",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "LINK": {
+            "aclass": "currency",
+            "altname": "LINK",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 0.7,
+            "status": "enabled"
+        },
+        "LMWR": {
+            "aclass": "currency",
+            "altname": "LMWR",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "LPT": {
+            "aclass": "currency",
+            "altname": "LPT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "LRC": {
+            "aclass": "currency",
+            "altname": "LRC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "LSK": {
+            "aclass": "currency",
+            "altname": "LSK",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "LUNA": {
+            "aclass": "currency",
+            "altname": "LUNA",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "LUNA.S": {
+            "aclass": "currency",
+            "altname": "LUNA.S",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "LUNA2": {
+            "aclass": "currency",
+            "altname": "LUNA2",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MANA": {
+            "aclass": "currency",
+            "altname": "MANA",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 0.7,
+            "status": "enabled"
+        },
+        "MASK": {
+            "aclass": "currency",
+            "altname": "MASK",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MATIC": {
+            "aclass": "currency",
+            "altname": "MATIC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 0.7,
+            "status": "enabled"
+        },
+        "MATIC.S": {
+            "aclass": "currency",
+            "altname": "MATIC.S",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MATIC04.S": {
+            "aclass": "currency",
+            "altname": "MATIC04.S",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MC": {
+            "aclass": "currency",
+            "altname": "MC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MINA": {
+            "aclass": "currency",
+            "altname": "MINA",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MINA.S": {
+            "aclass": "currency",
+            "altname": "MINA.S",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MIR": {
+            "aclass": "currency",
+            "altname": "MIR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MKR": {
+            "aclass": "currency",
+            "altname": "MKR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MNGO": {
+            "aclass": "currency",
+            "altname": "MNGO",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MOON": {
+            "aclass": "currency",
+            "altname": "MOON",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "MOVR": {
+            "aclass": "currency",
+            "altname": "MOVR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MSOL": {
+            "aclass": "currency",
+            "altname": "MSOL",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MULTI": {
+            "aclass": "currency",
+            "altname": "MULTI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MV": {
+            "aclass": "currency",
+            "altname": "MV",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "MXC": {
+            "aclass": "currency",
+            "altname": "MXC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "NANO": {
+            "aclass": "currency",
+            "altname": "NANO",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "NEAR": {
+            "aclass": "currency",
+            "altname": "NEAR",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "NMR": {
+            "aclass": "currency",
+            "altname": "NMR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "NODL": {
+            "aclass": "currency",
+            "altname": "NODL",
+            "decimals": 6,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "NYM": {
+            "aclass": "currency",
+            "altname": "NYM",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "OCEAN": {
+            "aclass": "currency",
+            "altname": "OCEAN",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "OGN": {
+            "aclass": "currency",
+            "altname": "OGN",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "OMG": {
+            "aclass": "currency",
+            "altname": "OMG",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ORCA": {
+            "aclass": "currency",
+            "altname": "ORCA",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "OXT": {
+            "aclass": "currency",
+            "altname": "OXT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "OXY": {
+            "aclass": "currency",
+            "altname": "OXY",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "PARA": {
+            "aclass": "currency",
+            "altname": "PARA",
+            "decimals": 3,
+            "display_decimals": 1,
+            "status": "enabled"
+        },
+        "PAXG": {
+            "aclass": "currency",
+            "altname": "PAXG",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "PEPE": {
+            "aclass": "currency",
+            "altname": "PEPE",
+            "decimals": 2,
+            "display_decimals": 0,
+            "status": "enabled"
+        },
+        "PERP": {
+            "aclass": "currency",
+            "altname": "PERP",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "PHA": {
+            "aclass": "currency",
+            "altname": "PHA",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "PLA": {
+            "aclass": "currency",
+            "altname": "PLA",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "POLIS": {
+            "aclass": "currency",
+            "altname": "POLIS",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "POLS": {
+            "aclass": "currency",
+            "altname": "POLS",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "POND": {
+            "aclass": "currency",
+            "altname": "POND",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "POWR": {
+            "aclass": "currency",
+            "altname": "POWR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "PSTAKE": {
+            "aclass": "currency",
+            "altname": "PSTAKE",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "PYUSD": {
+            "aclass": "currency",
+            "altname": "PYUSD",
+            "decimals": 8,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "QNT": {
+            "aclass": "currency",
+            "altname": "QNT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "QTUM": {
+            "aclass": "currency",
+            "altname": "QTUM",
+            "decimals": 10,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "RAD": {
+            "aclass": "currency",
+            "altname": "RAD",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "RARE": {
+            "aclass": "currency",
+            "altname": "RARE",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "RARI": {
+            "aclass": "currency",
+            "altname": "RARI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "RAY": {
+            "aclass": "currency",
+            "altname": "RAY",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "RBC": {
+            "aclass": "currency",
+            "altname": "RBC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "REN": {
+            "aclass": "currency",
+            "altname": "REN",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "REPV2": {
+            "aclass": "currency",
+            "altname": "REPV2",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "REQ": {
+            "aclass": "currency",
+            "altname": "REQ",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "RLC": {
+            "aclass": "currency",
+            "altname": "RLC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "RNDR": {
+            "aclass": "currency",
+            "altname": "RNDR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ROOK": {
+            "aclass": "currency",
+            "altname": "ROOK",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "RPL": {
+            "aclass": "currency",
+            "altname": "RPL",
+            "decimals": 7,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "RUNE": {
+            "aclass": "currency",
+            "altname": "RUNE",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SAMO": {
+            "aclass": "currency",
+            "altname": "SAMO",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SAND": {
+            "aclass": "currency",
+            "altname": "SAND",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SBR": {
+            "aclass": "currency",
+            "altname": "SBR",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SC": {
+            "aclass": "currency",
+            "altname": "SC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SCRT": {
+            "aclass": "currency",
+            "altname": "SCRT",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SCRT.S": {
+            "aclass": "currency",
+            "altname": "SCRT.S",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SCRT21.S": {
+            "aclass": "currency",
+            "altname": "SCRT21.S",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SDN": {
+            "aclass": "currency",
+            "altname": "SDN",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SEI": {
+            "aclass": "currency",
+            "altname": "SEI",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "SGB": {
+            "aclass": "currency",
+            "altname": "SGB",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SHIB": {
+            "aclass": "currency",
+            "altname": "SHIB",
+            "decimals": 5,
+            "display_decimals": 0,
+            "status": "enabled"
+        },
+        "SNX": {
+            "aclass": "currency",
+            "altname": "SNX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SOL": {
+            "aclass": "currency",
+            "altname": "SOL",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 0.9,
+            "status": "enabled"
+        },
+        "SOL.S": {
+            "aclass": "currency",
+            "altname": "SOL.S",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SOL03.S": {
+            "aclass": "currency",
+            "altname": "SOL03.S",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SPELL": {
+            "aclass": "currency",
+            "altname": "SPELL",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SRM": {
+            "aclass": "currency",
+            "altname": "SRM",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "STEP": {
+            "aclass": "currency",
+            "altname": "STEP",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "STG": {
+            "aclass": "currency",
+            "altname": "STG",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "STORJ": {
+            "aclass": "currency",
+            "altname": "STORJ",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "STX": {
+            "aclass": "currency",
+            "altname": "STX",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "SUI": {
+            "aclass": "currency",
+            "altname": "SUI",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "SUPER": {
+            "aclass": "currency",
+            "altname": "SUPER",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SUSHI": {
+            "aclass": "currency",
+            "altname": "SUSHI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SXP": {
+            "aclass": "currency",
+            "altname": "SXP",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "SYN": {
+            "aclass": "currency",
+            "altname": "SYN",
+            "decimals": 6,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "T": {
+            "aclass": "currency",
+            "altname": "T",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "TBTC": {
+            "aclass": "currency",
+            "altname": "TBTC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "TEER": {
+            "aclass": "currency",
+            "altname": "TEER",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "TLM": {
+            "aclass": "currency",
+            "altname": "TLM",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "TOKE": {
+            "aclass": "currency",
+            "altname": "TOKE",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "TRIBE": {
+            "aclass": "currency",
+            "altname": "TRIBE",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "TRU": {
+            "aclass": "currency",
+            "altname": "TRU",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "TRX": {
+            "aclass": "currency",
+            "altname": "TRX",
+            "decimals": 8,
+            "display_decimals": 6,
+            "collateral_value": 0.5,
+            "status": "enabled"
+        },
+        "TRX.S": {
+            "aclass": "currency",
+            "altname": "TRX.S",
+            "decimals": 8,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "TUSD": {
+            "aclass": "currency",
+            "altname": "TUSD",
+            "decimals": 8,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "TVK": {
+            "aclass": "currency",
+            "altname": "TVK",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "UMA": {
+            "aclass": "currency",
+            "altname": "UMA",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "UNFI": {
+            "aclass": "currency",
+            "altname": "UNFI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "UNI": {
+            "aclass": "currency",
+            "altname": "UNI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "USD.HOLD": {
+            "aclass": "currency",
+            "altname": "USD.HOLD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "USD.M": {
+            "aclass": "currency",
+            "altname": "USD.M",
+            "decimals": 4,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "USDC": {
+            "aclass": "currency",
+            "altname": "USDC",
+            "decimals": 8,
+            "display_decimals": 4,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "USDC.M": {
+            "aclass": "currency",
+            "altname": "USDC.M",
+            "decimals": 8,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "USDT": {
+            "aclass": "currency",
+            "altname": "USDT",
+            "decimals": 8,
+            "display_decimals": 4,
+            "collateral_value": 0.9,
+            "status": "enabled"
+        },
+        "USDT.M": {
+            "aclass": "currency",
+            "altname": "USDT.M",
+            "decimals": 8,
+            "display_decimals": 4,
+            "status": "enabled"
+        },
+        "UST": {
+            "aclass": "currency",
+            "altname": "UST",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "WAVES": {
+            "aclass": "currency",
+            "altname": "WAVES",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "WAXL": {
+            "aclass": "currency",
+            "altname": "WAXL",
+            "decimals": 5,
+            "display_decimals": 3,
+            "status": "enabled"
+        },
+        "WBTC": {
+            "aclass": "currency",
+            "altname": "WBTC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "WETH": {
+            "aclass": "currency",
+            "altname": "WETH",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "WOO": {
+            "aclass": "currency",
+            "altname": "WOO",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "XBT.M": {
+            "aclass": "currency",
+            "altname": "XBT.M",
+            "decimals": 10,
+            "display_decimals": 8,
+            "status": "enabled"
+        },
+        "XCN": {
+            "aclass": "currency",
+            "altname": "XCN",
+            "decimals": 4,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "XETC": {
+            "aclass": "currency",
+            "altname": "ETC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "XETH": {
+            "aclass": "currency",
+            "altname": "ETH",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "XLTC": {
+            "aclass": "currency",
+            "altname": "LTC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 0.7,
+            "status": "enabled"
+        },
+        "XMLN": {
+            "aclass": "currency",
+            "altname": "MLN",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "XREP": {
+            "aclass": "currency",
+            "altname": "REP",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "XRT": {
+            "aclass": "currency",
+            "altname": "XRT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "XTZ": {
+            "aclass": "currency",
+            "altname": "XTZ",
+            "decimals": 8,
+            "display_decimals": 6,
+            "collateral_value": 0.5,
+            "status": "enabled"
+        },
+        "XTZ.S": {
+            "aclass": "currency",
+            "altname": "XTZ.S",
+            "decimals": 8,
+            "display_decimals": 6,
+            "status": "enabled"
+        },
+        "XXBT": {
+            "aclass": "currency",
+            "altname": "XBT",
+            "decimals": 10,
+            "display_decimals": 5,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "XXDG": {
+            "aclass": "currency",
+            "altname": "XDG",
+            "decimals": 8,
+            "display_decimals": 2,
+            "status": "enabled"
+        },
+        "XXLM": {
+            "aclass": "currency",
+            "altname": "XLM",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "XXMR": {
+            "aclass": "currency",
+            "altname": "XMR",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "XXRP": {
+            "aclass": "currency",
+            "altname": "XRP",
+            "decimals": 8,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "XZEC": {
+            "aclass": "currency",
+            "altname": "ZEC",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "YFI": {
+            "aclass": "currency",
+            "altname": "YFI",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "YGG": {
+            "aclass": "currency",
+            "altname": "YGG",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ZAUD": {
+            "aclass": "currency",
+            "altname": "AUD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "ZCAD": {
+            "aclass": "currency",
+            "altname": "CAD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "ZEUR": {
+            "aclass": "currency",
+            "altname": "EUR",
+            "decimals": 4,
+            "display_decimals": 2,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "ZGBP": {
+            "aclass": "currency",
+            "altname": "GBP",
+            "decimals": 4,
+            "display_decimals": 2,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "ZJPY": {
+            "aclass": "currency",
+            "altname": "JPY",
+            "decimals": 2,
+            "display_decimals": 0,
+            "collateral_value": 1,
+            "status": "enabled"
+        },
+        "ZRX": {
+            "aclass": "currency",
+            "altname": "ZRX",
+            "decimals": 10,
+            "display_decimals": 5,
+            "status": "enabled"
+        },
+        "ZUSD": {
+            "aclass": "currency",
+            "altname": "USD",
+            "decimals": 4,
+            "display_decimals": 2,
+            "collateral_value": 1,
+            "status": "enabled"
+        }
+    }
+}

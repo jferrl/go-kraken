@@ -116,3 +116,60 @@ func TestMarketData_SystemStatus(t *testing.T) {
 		})
 	}
 }
+
+func TestMarketData_Assets(t *testing.T) {
+	ctx := context.Background()
+
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx context.Context
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		asset   Asset
+		want    AssetInfo
+		wantErr bool
+	}{
+		{
+			name: "get assets",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "asset_info.json"),
+			},
+			args: args{
+				ctx: ctx,
+			},
+			asset: ETH2,
+			want: AssetInfo{
+				Altname:         "ETH2",
+				AssetClass:      "currency",
+				Decimals:        10,
+				DisplayDecimals: 5,
+				Status:          "enabled",
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Market.Assets(tt.args.ctx)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("MarketData.Assets() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+
+			a := got.Info(tt.asset)
+
+			if !reflect.DeepEqual(a, tt.want) {
+				t.Errorf("MarketData.Assets() = %v, want %v", a, tt.want)
+			}
+		})
+	}
+}

@@ -40,3 +40,18 @@ func (m *MarketData) SystemStatus(ctx context.Context) (*SystemStatus, error) {
 
 	return &v, nil
 }
+
+// Assets gets information about the assets available for trading on Kraken.
+func (m *MarketData) Assets(ctx context.Context) (Assets, error) {
+	req, err := m.client.newPublicRequest(ctx, http.MethodGet, "Assets", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	var v Assets
+	if err := m.client.do(req, &v); err != nil {
+		return nil, err
+	}
+
+	return v, nil
+}
