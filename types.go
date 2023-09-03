@@ -10,24 +10,26 @@ type ServerTime struct {
 	Rfc1123  string `json:"rfc1123"`
 }
 
-// ServerStatus represents the system status.
-type ServerStatus string
+// Status represents an status within Kraken.
+type Status string
 
 const (
 	//Online means Kraken is operating normally. All order types may be submitted and trades can occur.
-	Online ServerStatus = "online"
+	Online Status = "online"
 	// Maintenance means exchange is offline. No new orders or cancellations may be submitted.
-	Maintenance ServerStatus = "maintenance"
+	Maintenance Status = "maintenance"
 	// CancelOnly means resting (open) orders can be cancelled but no new orders may be submitted. No trades will occur.
-	CancelOnly ServerStatus = "cancel_only"
+	CancelOnly Status = "cancel_only"
 	// PostOnly means only post-only limit orders can be submitted. Existing orders may still be cancelled. No trades will occur.
-	PostOnly ServerStatus = "post_only"
+	PostOnly Status = "post_only"
+	// ReduceOnly .
+	ReduceOnly Status = "reduce_only"
 )
 
 // SystemStatus represents the current system status.
 type SystemStatus struct {
-	Status    ServerStatus `json:"status"`
-	Timestamp string       `json:"timestamp"` // Current timestamp (RFC3339)
+	Status    Status `json:"status"`
+	Timestamp string `json:"timestamp"` // Current timestamp (RFC3339)
 }
 
 // Balance represents the user's balance.
@@ -117,3 +119,13 @@ type OrderCreation struct {
 type OrderCancelation struct {
 	Count int `json:"count"`
 }
+
+// PairInfo defines the information about an asset pair.
+type PairInfo string
+
+const (
+	Info     PairInfo = "info"
+	Leverage PairInfo = "leverage"
+	Fees     PairInfo = "fees"
+	Margin   PairInfo = "margin"
+)

@@ -55,12 +55,14 @@ func (o AssetsOpts) IsZero() bool {
 	return len(o.Assets) == 0 && o.Class == ""
 }
 
+// String returns the query string representation of the AssetsOpts.
 func (o AssetsOpts) String() string {
 	v, _ := query.Values(o)
 	return v.Encode()
 }
 
 // Assets gets information about the assets available for trading on Kraken.
+// Docs: https://docs.kraken.com/rest/#tag/Market-Data/operation/getAssetInfo
 func (m *MarketData) Assets(ctx context.Context, opts AssetsOpts) (Assets, error) {
 	path := "Assets"
 	if !opts.IsZero() {
@@ -73,6 +75,44 @@ func (m *MarketData) Assets(ctx context.Context, opts AssetsOpts) (Assets, error
 	}
 
 	var v Assets
+	if err := m.client.do(req, &v); err != nil {
+		return nil, err
+	}
+
+	return v, nil
+}
+
+// TradableAssetPairsOpts represents the parameters to get information about the asset pairs available for trading on Kraken.
+type TradableAssetPairsOpts struct {
+	Pairs []AssetPair `url:"pair,omitempty"`
+	Info  PairInfo    `url:"info,omitempty"`
+}
+
+// IsZero returns true if the TradableAssetPairsOpts is empty.
+func (o TradableAssetPairsOpts) IsZero() bool {
+	return len(o.Pairs) == 0 && o.Info == ""
+}
+
+// String returns the query string representation of the TradableAssetPairsOpts.
+func (o TradableAssetPairsOpts) String() string {
+	v, _ := query.Values(o)
+	return v.Encode()
+}
+
+// TradableAssetPairs gets information about the asset pairs available for trading on Kraken.
+// Docs: https://docs.kraken.com/rest/#tag/Market-Data/operation/getTradableAssetPairs
+func (m *MarketData) TradableAssetPairs(ctx context.Context, opts TradableAssetPairsOpts) (AssetPairs, error) {
+	path := "AssetPairs"
+	if !opts.IsZero() {
+		path = fmt.Sprintf("%s?%s", path, opts.String())
+	}
+
+	req, err := m.client.newPublicRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	var v AssetPairs
 	if err := m.client.do(req, &v); err != nil {
 		return nil, err
 	}

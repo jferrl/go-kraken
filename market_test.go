@@ -177,3 +177,82 @@ func TestMarketData_Assets(t *testing.T) {
 		})
 	}
 }
+
+func Test_TradableAssetPairs(t *testing.T) {
+	ctx := context.Background()
+
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts TradableAssetPairsOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		pair    AssetPair
+		want    AssetPairInfo
+		wantErr bool
+	}{
+		{
+			name: "get tradable asset pairs",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "asset_pairs.json"),
+			},
+			args: args{
+				ctx: ctx,
+				opts: TradableAssetPairsOpts{
+					Info: Info,
+				},
+			},
+			pair: ETHUSDC,
+			want: AssetPairInfo{
+				Altname:            "ETHUSDC",
+				WSName:             "ETH/USDC",
+				AClassBase:         "currency",
+				Base:               "XETH",
+				AClassQuote:        "currency",
+				Quote:              "USDC",
+				PairDecimals:       2,
+				CostDecimals:       6,
+				LotDecimals:        8,
+				LotMultiplier:      1,
+				LeverageBuy:        []int{2, 3, 4},
+				LeverageSell:       []int{2, 3, 4},
+				Fees:               []FeeTuple{{0, 0.26}},
+				FeesMaker:          []FeeTuple{{0, 0.16}},
+				FeeVolumeCurrency:  "ZUSD",
+				MarginCall:         80,
+				MarginStop:         40,
+				OrderMin:           "0.01",
+				CostMin:            "0.5",
+				TickSize:           "0.01",
+				Status:             "online",
+				LongPositionLimit:  170,
+				ShortPositionLimit: 125,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Market.TradableAssetPairs(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("MarketData.TradableAssetPairs() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+
+			a := got.Info(tt.pair)
+
+			if !reflect.DeepEqual(a, tt.want) {
+				t.Errorf("MarketData.TradableAssetPairs() = %v, want %v", a, tt.want)
+			}
+		})
+	}
+}
