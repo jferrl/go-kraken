@@ -22,7 +22,7 @@ func TestAccount_Balance(t *testing.T) {
 		name    string
 		fields  fields
 		args    args
-		want    *AccountBalance
+		want    AccountBalance
 		wantErr bool
 	}{
 		{
@@ -33,9 +33,9 @@ func TestAccount_Balance(t *testing.T) {
 			args: args{
 				ctx: ctx,
 			},
-			want: &AccountBalance{
-				ZUSD: 171288.6158,
-				XXBT: 0.0000000000,
+			want: AccountBalance{
+				ZUSD: "171288.6158",
+				XXBT: "0.0000000000",
 			},
 		},
 	}

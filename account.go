@@ -11,7 +11,7 @@ import (
 type Account service
 
 // Balance retrieves all cash balances, net of pending withdrawals.
-func (a *Account) Balance(ctx context.Context) (*AccountBalance, error) {
+func (a *Account) Balance(ctx context.Context) (AccountBalance, error) {
 	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "Balance", url.Values{})
 	if err != nil {
 		return nil, err
@@ -22,5 +22,5 @@ func (a *Account) Balance(ctx context.Context) (*AccountBalance, error) {
 		return nil, err
 	}
 
-	return &v, nil
+	return v, nil
 }
