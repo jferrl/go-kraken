@@ -6,13 +6,20 @@ type Asset string
 // AssetPair defines an asset pair within Kraken.
 type AssetPair string
 
+// AssetClass defines an asset class within Kraken.
+type AssetClass string
+
+const (
+	Currency AssetClass = "currency"
+)
+
 // AssetInfo defines the information about an asset.
 type AssetInfo struct {
-	Altname         string `json:"altname"`
-	AssetClass      string `json:"aclass"`
-	Decimals        int    `json:"decimals"`
-	DisplayDecimals int    `json:"display_decimals"`
-	Status          string `json:"status"`
+	Altname         string     `json:"altname"`
+	AssetClass      AssetClass `json:"aclass"`
+	Decimals        int        `json:"decimals"`
+	DisplayDecimals int        `json:"display_decimals"`
+	Status          string     `json:"status"`
 }
 
 // Assets defines a map of assets.

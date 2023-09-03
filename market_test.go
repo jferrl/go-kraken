@@ -124,7 +124,8 @@ func TestMarketData_Assets(t *testing.T) {
 		apiMock *httptest.Server
 	}
 	type args struct {
-		ctx context.Context
+		ctx  context.Context
+		opts AssetsOpts
 	}
 	tests := []struct {
 		name    string
@@ -141,6 +142,9 @@ func TestMarketData_Assets(t *testing.T) {
 			},
 			args: args{
 				ctx: ctx,
+				opts: AssetsOpts{
+					Class: Currency,
+				},
 			},
 			asset: ETH2,
 			want: AssetInfo{
@@ -159,7 +163,7 @@ func TestMarketData_Assets(t *testing.T) {
 			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
-			got, err := c.Market.Assets(tt.args.ctx)
+			got, err := c.Market.Assets(tt.args.ctx, tt.args.opts)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MarketData.Assets() error = %v, wantErr %v", err, tt.wantErr)
 				return
