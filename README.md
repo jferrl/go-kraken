@@ -46,7 +46,30 @@ deadlines to various services of the client for handling a request.
 
 ## Token Creation
 
+<https://pro.kraken.com/app/settings/api>
+
 ## Authentication
+
+<https://docs.kraken.com/rest/#section/Authentication>
+
+Authenticated requests must include both API-Key and API-Sign HTTP headers, and nonce in the request payload. otp is also required in the payload if two-factor authentication (2FA) is enabled.
+
+### Nonce
+
+Nonce must be an always increasing, unsigned 64-bit integer, for each request that is made with a particular API key. While a simple counter would provide a valid nonce, a more usual method of generating a valid nonce is to use e.g. a UNIX timestamp in milliseconds.
+
+###  API-Key
+
+The "API-Key" header should contain your API key.
+
+Security Scheme Type: API Key
+Header parameter name: API-Key
+
+###  API-Sign
+
+Authenticated requests should be signed with the "API-Sign" header, using a signature generated with your private key, nonce, encoded payload, and URI path according to:
+
+`HMAC-SHA512 of (URI path + SHA256(nonce + POST data)) and base64 decoded secret API key`
 
 ## License
 
