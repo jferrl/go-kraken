@@ -4,14 +4,13 @@ linters:
     - dupl
     - gofmt
     - goimports
-  # - gosec
+    - gosec
     - misspell
     - nakedret
     - stylecheck
-  # - unconvert
-  # - unparam
+    - unconvert
+    - unparam
     - whitespace
-  disable:
     - errcheck
     - gosimple
     - staticcheck
