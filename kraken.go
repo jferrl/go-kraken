@@ -33,9 +33,10 @@ type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// Services used for talking to different parts of the Kraken API.
-	Market  *MarketData
-	Account *Account
-	Trading *Trading
+	Market         *MarketData
+	Account        *Account
+	Trading        *Trading
+	WebsocketsAuth *WebsocketsAuth
 }
 
 type service struct {
@@ -61,6 +62,7 @@ func New(httpClient *http.Client) *Client {
 	c.Market = (*MarketData)(&c.common)
 	c.Account = (*Account)(&c.common)
 	c.Trading = (*Trading)(&c.common)
+	c.WebsocketsAuth = (*WebsocketsAuth)(&c.common)
 
 	return c
 }

@@ -129,3 +129,9 @@ const (
 	Fees     PairInfo = "fees"
 	Margin   PairInfo = "margin"
 )
+
+// WebsocketsToken defines the response from the GetWebSocketsToken method.
+type WebsocketsToken struct {
+	Token   string `json:"token"`
+	Expires int64  `json:"expires"`
+}
