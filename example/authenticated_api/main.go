@@ -15,7 +15,6 @@ func main() {
 			kraken.Secrets{},
 		)
 
-	// Get server time
 	st, err := c.Account.Balance(ctx)
 	if err != nil {
 		fmt.Println(err)
