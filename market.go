@@ -2,6 +2,7 @@ package kraken
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 
@@ -118,4 +119,51 @@ func (m *MarketData) TradableAssetPairs(ctx context.Context, opts TradableAssetP
 	}
 
 	return v, nil
+}
+
+type OHCLDataOpts struct {
+	Pair     AssetPair `url:"pair,omitempty"`
+	Interval int       `url:"interval,omitempty"`
+	Since    int       `url:"since,omitempty"`
+}
+
+func (o OHCLDataOpts) String() string {
+	v, _ := query.Values(o)
+	return v.Encode()
+}
+
+// OHCLData retrieves the last entry in the OHLC array is for the current,
+// not-yet-committed frame and will always be present, regardless of the value of since
+func (m *MarketData) OHCLData(ctx context.Context, opts OHCLDataOpts) (*OHCL, error) {
+	if opts.Pair == "" {
+		return nil, errors.New("pair is required")
+	}
+
+	path := fmt.Sprintf("OHLC?%s", opts.String())
+	req, err := m.client.newPublicRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	var v OHCLData
+	if err := m.client.do(req, &v); err != nil {
+		return nil, err
+	}
+
+	var last int64
+	if v, ok := v["last"].(float64); ok {
+		last = int64(v)
+	}
+
+	var pair TickData
+	if v, ok := v[string(opts.Pair)].([]interface{}); ok {
+		pair = TickData{v}
+	}
+
+	ohcl := &OHCL{
+		Last: last,
+		Pair: pair,
+	}
+
+	return ohcl, nil
 }

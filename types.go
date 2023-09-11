@@ -135,3 +135,12 @@ type WebsocketsToken struct {
 	Token   string `json:"token"`
 	Expires int64  `json:"expires"`
 }
+
+type TickData [][]any
+
+type OHCLData map[string]any
+
+type OHCL struct {
+	Last int64
+	Pair TickData
+}

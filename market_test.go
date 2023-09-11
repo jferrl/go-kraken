@@ -256,3 +256,73 @@ func Test_TradableAssetPairs(t *testing.T) {
 		})
 	}
 }
+
+func TestMarketData_OHCLData(t *testing.T) {
+	ctx := context.Background()
+
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts OHCLDataOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *OHCL
+		wantErr bool
+	}{
+		{
+			name: "pair is required",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "ohcl_data.json"),
+			},
+			args: args{
+				ctx: ctx,
+			},
+			wantErr: true,
+		},
+		{
+			name: "get OHCL data",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "ohcl_data.json"),
+			},
+			args: args{
+				ctx: ctx,
+				opts: OHCLDataOpts{
+					Pair: XXBTZUSD,
+				},
+			},
+			want: &OHCL{
+				Last: 1688672160,
+				Pair: TickData{
+					[]any{},
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Market.OHCLData(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("MarketData.OHCLData() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+
+			if err != nil {
+				return
+			}
+
+			if !reflect.DeepEqual(got.Last, tt.want.Last) {
+				t.Errorf("MarketData.OHCLData().Last = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
