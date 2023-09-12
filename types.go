@@ -136,11 +136,127 @@ type WebsocketsToken struct {
 	Expires int64  `json:"expires"`
 }
 
-type TickData [][]any
+// Tick represents a tick.
+type Tick []any
 
-type OHCLData map[string]any
+// TickValues represents the values of a tick.
+type TickValues struct {
+	Open   string
+	High   string
+	Low    string
+	Close  string
+	Vwap   string
+	Volume string
+	Count  int64
+	Time   int64
+}
 
+// Valid returns true if the tick is valid.
+func (t Tick) Valid() bool {
+	return len(t) == 8
+}
+
+// Time returns the time of the tick.
+func (t Tick) Time() int64 {
+	v := t[0]
+	switch value := v.(type) {
+	case float64:
+		return int64(value)
+	case int64:
+		return value
+	case int:
+		return int64(value)
+	default:
+		return 0
+	}
+}
+
+// Open returns the open price of the tick.
+func (t Tick) Open() string {
+	if v, ok := t[1].(string); ok {
+		return v
+	}
+	return ""
+}
+
+// High returns the high price of the tick.
+func (t Tick) High() string {
+	if v, ok := t[2].(string); ok {
+		return v
+	}
+	return ""
+}
+
+// Low returns the low price of the tick.
+func (t Tick) Low() string {
+	if v, ok := t[3].(string); ok {
+		return v
+	}
+	return ""
+}
+
+// Close returns the close price of the tick.
+func (t Tick) Close() string {
+	if v, ok := t[4].(string); ok {
+		return v
+	}
+	return ""
+}
+
+// Vwap returns the vwap of the tick.
+func (t Tick) Vwap() string {
+	if v, ok := t[5].(string); ok {
+		return v
+	}
+	return ""
+}
+
+// Volume returns the volume of the tick.
+func (t Tick) Volume() string {
+	if v, ok := t[6].(string); ok {
+		return v
+	}
+	return ""
+}
+
+// Count returns the count of the tick.
+func (t Tick) Count() int64 {
+	v := t[7]
+	switch value := v.(type) {
+	case float64:
+		return int64(value)
+	case int64:
+		return value
+	case int:
+		return int64(value)
+	default:
+		return 0
+	}
+}
+
+// Values returns the values of the tick.
+func (t Tick) Values() TickValues {
+	if !t.Valid() {
+		return TickValues{}
+	}
+
+	return TickValues{
+		Open:   t.Open(),
+		High:   t.High(),
+		Low:    t.Low(),
+		Close:  t.Close(),
+		Vwap:   t.Vwap(),
+		Volume: t.Volume(),
+		Count:  t.Count(),
+		Time:   t.Time(),
+	}
+}
+
+// Ticks is a slice of Tick.
+type Ticks []Tick
+
+// OHCL represents the OHCL data.
 type OHCL struct {
 	Last int64
-	Pair TickData
+	Pair Ticks
 }

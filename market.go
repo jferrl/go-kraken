@@ -132,8 +132,11 @@ func (o OHCLDataOpts) String() string {
 	return v.Encode()
 }
 
+type ohclData map[string]any
+
 // OHCLData retrieves the last entry in the OHLC array is for the current,
-// not-yet-committed frame and will always be present, regardless of the value of since
+// not-yet-committed frame and will always be present, regardless of the value of since.
+// Docs: https://docs.kraken.com/rest/#tag/Market-Data/operation/getOHLCData
 func (m *MarketData) OHCLData(ctx context.Context, opts OHCLDataOpts) (*OHCL, error) {
 	if opts.Pair == "" {
 		return nil, errors.New("pair is required")
@@ -145,25 +148,27 @@ func (m *MarketData) OHCLData(ctx context.Context, opts OHCLDataOpts) (*OHCL, er
 		return nil, err
 	}
 
-	var v OHCLData
+	var v ohclData
 	if err := m.client.do(req, &v); err != nil {
 		return nil, err
 	}
 
 	var last int64
-	if v, ok := v["last"].(float64); ok {
-		last = int64(v)
+	if l, ok := v["last"].(float64); ok {
+		last = int64(l)
 	}
 
-	var pair TickData
-	if v, ok := v[string(opts.Pair)].([]interface{}); ok {
-		pair = TickData{v}
+	var ticks Ticks
+	if p, ok := v[string(opts.Pair)].([]any); ok {
+		for _, t := range p {
+			if pv, ok := t.([]any); ok {
+				ticks = append(ticks, pv)
+			}
+		}
 	}
 
-	ohcl := &OHCL{
+	return &OHCL{
 		Last: last,
-		Pair: pair,
-	}
-
-	return ohcl, nil
+		Pair: ticks,
+	}, nil
 }

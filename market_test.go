@@ -297,8 +297,27 @@ func TestMarketData_OHCLData(t *testing.T) {
 			},
 			want: &OHCL{
 				Last: 1688672160,
-				Pair: TickData{
-					[]any{},
+				Pair: Ticks{
+					{
+						float64(1688671200),
+						"30306.1",
+						"30306.2",
+						"30305.7",
+						"30305.7",
+						"30306.1",
+						"3.39243896",
+						float64(23),
+					},
+					{
+						float64(1688671260),
+						"30304.5",
+						"30304.5",
+						"30300.0",
+						"30300.0",
+						"30300.0",
+						"4.42996871",
+						float64(18),
+					},
 				},
 			},
 		},
@@ -320,8 +339,8 @@ func TestMarketData_OHCLData(t *testing.T) {
 				return
 			}
 
-			if !reflect.DeepEqual(got.Last, tt.want.Last) {
-				t.Errorf("MarketData.OHCLData().Last = %v, want %v", got, tt.want)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MarketData.OHCLData() = %v, want %v", got, tt.want)
 			}
 		})
 	}
