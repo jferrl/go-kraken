@@ -58,6 +58,30 @@ Authenticated requests must include both API-Key and API-Sign HTTP headers, and 
 
 Nonce must be an always increasing, unsigned 64-bit integer, for each request that is made with a particular API key. While a simple counter would provide a valid nonce, a more usual method of generating a valid nonce is to use e.g. a UNIX timestamp in milliseconds.
 
+### 2FA
+
+If two-factor authentication (2FA) is enabled for the API key and action in question, the one time password must be specified in the payload's otp value.
+
+In order to set OTP in the request, you can use the `ContextWithOtp` function. Internally, OTP value is stored in the context and then used in the request.
+
+ For example:
+
+```go
+package main
+
+import (
+ "context"
+
+ "github.com/jferrl/go-kraken"
+)
+
+func main() {
+ ctx := context.Background()
+
+ ctxWithOpt := kraken.ContextWithOtp(ctx, "123456")
+}
+```
+
 ###  API-Key
 
 The "API-Key" header should contain your API key.

@@ -59,7 +59,11 @@ func (c *Client) newPublicRequest(ctx context.Context, method string, path strin
 func (c *Client) newPrivateRequest(ctx context.Context, method string, path string, body url.Values) (*http.Request, error) {
 	reqURL := c.buildPrivateURL(path)
 
-	body.Set(NonceKey, fmt.Sprintf("%d", time.Now().UnixNano()))
+	if otp := OtpFromContext(ctx); otp != "" {
+		body.Set("otp", string(otp))
+	}
+
+	body.Set(nonceKey, fmt.Sprintf("%d", time.Now().UnixNano()))
 
 	req, err := http.NewRequestWithContext(ctx, method, reqURL.String(), strings.NewReader(body.Encode()))
 	if err != nil {

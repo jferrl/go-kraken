@@ -8,10 +8,7 @@ import (
 	"net/url"
 )
 
-// NonceKey is the key used for the nonce value. A nonce simply stands for a Number used ONCE.
-// It’s a unique token used to add a layer of security to the request and also to validate the intent
-// of a user initiated action.
-const NonceKey = "nonce"
+const nonceKey = "nonce"
 
 // Signer represents a Kraken API signature.
 type Signer struct {
@@ -34,7 +31,7 @@ func NewSigner(s string) *Signer {
 // Docs: https://www.kraken.com/help/api#general-usage for more information
 func (s *Signer) Sign(v url.Values, path string) string {
 	sha := sha256.New()
-	sha.Write([]byte(v.Get(NonceKey) + v.Encode()))
+	sha.Write([]byte(v.Get(nonceKey) + v.Encode()))
 
 	mac := hmac.New(sha512.New, s.Secret)
 	mac.Write(append([]byte(path), sha.Sum(nil)...))
