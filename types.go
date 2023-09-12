@@ -255,7 +255,7 @@ func (t Tick) Values() TickValues {
 // Ticks is a slice of Tick.
 type Ticks []Tick
 
-// OHCL represents the OHCL data.
+// OHCL represents the OHCL data. It represents the "Open-high-low-close chart".
 type OHCL struct {
 	Last int64
 	Pair Ticks
