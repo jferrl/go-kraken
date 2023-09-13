@@ -147,11 +147,11 @@ type WebsocketsToken struct {
 	Expires int64  `json:"expires"`
 }
 
-// Tick represents a tick.
-type Tick []any
+// Ticker represents a ticker.
+type Ticker []any
 
-// TickValues represents the values of a tick.
-type TickValues struct {
+// TickerValues represents the values of a ticker.
+type TickerValues struct {
 	Open   string
 	High   string
 	Low    string
@@ -163,12 +163,12 @@ type TickValues struct {
 }
 
 // Valid returns true if the tick is valid.
-func (t Tick) Valid() bool {
+func (t Ticker) Valid() bool {
 	return len(t) == 8
 }
 
 // Time returns the time of the tick.
-func (t Tick) Time() int64 {
+func (t Ticker) Time() int64 {
 	v := t[0]
 	switch value := v.(type) {
 	case float64:
@@ -183,7 +183,7 @@ func (t Tick) Time() int64 {
 }
 
 // Open returns the open price of the tick.
-func (t Tick) Open() string {
+func (t Ticker) Open() string {
 	if v, ok := t[1].(string); ok {
 		return v
 	}
@@ -191,7 +191,7 @@ func (t Tick) Open() string {
 }
 
 // High returns the high price of the tick.
-func (t Tick) High() string {
+func (t Ticker) High() string {
 	if v, ok := t[2].(string); ok {
 		return v
 	}
@@ -199,7 +199,7 @@ func (t Tick) High() string {
 }
 
 // Low returns the low price of the tick.
-func (t Tick) Low() string {
+func (t Ticker) Low() string {
 	if v, ok := t[3].(string); ok {
 		return v
 	}
@@ -207,7 +207,7 @@ func (t Tick) Low() string {
 }
 
 // Close returns the close price of the tick.
-func (t Tick) Close() string {
+func (t Ticker) Close() string {
 	if v, ok := t[4].(string); ok {
 		return v
 	}
@@ -215,7 +215,7 @@ func (t Tick) Close() string {
 }
 
 // Vwap returns the vwap of the tick.
-func (t Tick) Vwap() string {
+func (t Ticker) Vwap() string {
 	if v, ok := t[5].(string); ok {
 		return v
 	}
@@ -223,7 +223,7 @@ func (t Tick) Vwap() string {
 }
 
 // Volume returns the volume of the tick.
-func (t Tick) Volume() string {
+func (t Ticker) Volume() string {
 	if v, ok := t[6].(string); ok {
 		return v
 	}
@@ -231,7 +231,7 @@ func (t Tick) Volume() string {
 }
 
 // Count returns the count of the tick.
-func (t Tick) Count() int64 {
+func (t Ticker) Count() int64 {
 	v := t[7]
 	switch value := v.(type) {
 	case float64:
@@ -246,12 +246,12 @@ func (t Tick) Count() int64 {
 }
 
 // Values returns the values of the tick.
-func (t Tick) Values() TickValues {
+func (t Ticker) Values() TickerValues {
 	if !t.Valid() {
-		return TickValues{}
+		return TickerValues{}
 	}
 
-	return TickValues{
+	return TickerValues{
 		Open:   t.Open(),
 		High:   t.High(),
 		Low:    t.Low(),
@@ -263,11 +263,32 @@ func (t Tick) Values() TickValues {
 	}
 }
 
-// Ticks is a slice of Tick.
-type Ticks []Tick
+// OHCLTickers is a slice of Tick.
+type OHCLTickers []Ticker
 
 // OHCL represents the OHCL data. It represents the "Open-high-low-close chart".
 type OHCL struct {
 	Last int64
-	Pair Ticks
+	Pair OHCLTickers
+}
+
+// AssetTickerInfo defines the information about an asset ticker.
+type AssetTickerInfo struct {
+	Ask                        []string `json:"a"` // Ask price array(<price>, <whole lot volume>, <lot volume>)
+	Bid                        []string `json:"b"` // Bid price array(<price>, <whole lot volume>, <lot volume>)
+	Last                       []string `json:"c"` // Last trade closed array(<price>, <lot volume>)
+	Volume                     []string `json:"v"` // Volume array(<today>, <last 24 hours>)
+	VolumeWeightedAveragePrice []string `json:"p"` // Volume weighted average price array(<today>, <last 24 hours>)
+	NumberOfTrades             []int    `json:"t"` // Number of trades array(<today>, <last 24 hours>)
+	Low                        []string `json:"l"` // Low array(<today>, <last 24 hours>)
+	High                       []string `json:"h"` // High array(<today>, <last 24 hours>)
+	OpeningPrice               string   `json:"o"`
+}
+
+// Tickers defines a map of asset tickers.
+type Tickers map[AssetPair]AssetTickerInfo
+
+// Info returns the information about an asset pair.
+func (t Tickers) Info(assetPair AssetPair) AssetTickerInfo {
+	return t[assetPair]
 }

@@ -121,6 +121,44 @@ func (m *MarketData) TradableAssetPairs(ctx context.Context, opts TradableAssetP
 	return v, nil
 }
 
+type TickerInformationOpts struct {
+	Pairs []AssetPair `url:"pair,omitempty"`
+}
+
+// IsZero returns true if the TradableAssetPairsOpts is empty.
+func (o TickerInformationOpts) IsZero() bool {
+	return len(o.Pairs) == 0
+}
+
+// String returns the query string representation of the TradableAssetPairsOpts.
+func (o TickerInformationOpts) String() string {
+	v, _ := query.Values(o)
+	return v.Encode()
+}
+
+// TickerInformation gets ticker information about the asset pairs available for trading on Kraken.
+// Note: Today's prices start at midnight UTC. Leaving the pair parameter blank will return tickers
+// for all tradeable assets on Kraken.
+// Docs: https://docs.kraken.com/rest/#tag/Market-Data/operation/getTickerInformation
+func (m *MarketData) TickerInformation(ctx context.Context, opts TickerInformationOpts) (Tickers, error) {
+	path := "Ticker"
+	if !opts.IsZero() {
+		path = fmt.Sprintf("%s?%s", path, opts.String())
+	}
+
+	req, err := m.client.newPublicRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	var v Tickers
+	if err := m.client.do(req, &v); err != nil {
+		return nil, err
+	}
+
+	return v, nil
+}
+
 type OHCLDataOpts struct {
 	Pair     AssetPair `url:"pair,omitempty"`
 	Interval int       `url:"interval,omitempty"`
@@ -158,7 +196,7 @@ func (m *MarketData) OHCLData(ctx context.Context, opts OHCLDataOpts) (*OHCL, er
 		last = int64(l)
 	}
 
-	var ticks Ticks
+	var ticks OHCLTickers
 	if p, ok := v[string(opts.Pair)].([]any); ok {
 		for _, t := range p {
 			if pv, ok := t.([]any); ok {

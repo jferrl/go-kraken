@@ -297,7 +297,7 @@ func TestMarketData_OHCLData(t *testing.T) {
 			},
 			want: &OHCL{
 				Last: 1688672160,
-				Pair: Ticks{
+				Pair: OHCLTickers{
 					{
 						float64(1688671200),
 						"30306.1",
@@ -341,6 +341,71 @@ func TestMarketData_OHCLData(t *testing.T) {
 
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("MarketData.OHCLData() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMarketData_TickerInformation(t *testing.T) {
+	ctx := context.Background()
+
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts TickerInformationOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		pair    AssetPair
+		want    AssetTickerInfo
+		wantErr bool
+	}{
+		{
+			name: "get ticker information",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "ticker.json"),
+			},
+			args: args{
+				ctx: ctx,
+				opts: TickerInformationOpts{
+					Pairs: []AssetPair{XXBTZUSD},
+				},
+			},
+			pair: XXBTZUSD,
+			want: AssetTickerInfo{
+				Ask:                        []string{"30300.10000", "1", "1.000"},
+				Bid:                        []string{"30300.00000", "1", "1.000"},
+				Last:                       []string{"30303.20000", "0.00067643"},
+				Volume:                     []string{"4083.67001100", "4412.73601799"},
+				VolumeWeightedAveragePrice: []string{"30706.77771", "30689.13205"},
+				NumberOfTrades:             []int{34619, 38907},
+				Low:                        []string{"29868.30000", "29868.30000"},
+				High:                       []string{"31631.00000", "31631.00000"},
+				OpeningPrice:               "30502.80000",
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Market.TickerInformation(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("MarketData.TickerInformation() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+
+			a := got.Info(tt.pair)
+
+			if !reflect.DeepEqual(a, tt.want) {
+				t.Errorf("MarketData.TickerInformation() = %v, want %v", a, tt.want)
 			}
 		})
 	}

@@ -8,20 +8,20 @@ import (
 func TestTick_Values(t *testing.T) {
 	tests := []struct {
 		name     string
-		tr       Tick
-		wantTick TickValues
+		tr       Ticker
+		wantTick TickerValues
 	}{
 		{
 			name: "invalid tick",
-			tr:   Tick{},
+			tr:   Ticker{},
 		},
 		{
 			name: "tick with invalid values",
-			tr:   Tick{"0", 1, 2, 3, 4, 5, 6, "7"},
+			tr:   Ticker{"0", 1, 2, 3, 4, 5, 6, "7"},
 		},
 		{
 			name: "tick with valid values",
-			tr: Tick{
+			tr: Ticker{
 				1688671200,
 				"30306.1",
 				"30306.2",
@@ -31,7 +31,7 @@ func TestTick_Values(t *testing.T) {
 				"3.39243896",
 				23,
 			},
-			wantTick: TickValues{
+			wantTick: TickerValues{
 				Time:   1688671200,
 				Open:   "30306.1",
 				High:   "30306.2",
