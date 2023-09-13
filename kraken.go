@@ -28,7 +28,7 @@ type Client struct {
 
 	apiKey APIKey // API key used for authentication.
 
-	signer *Signer // Signer used to sign API requests.
+	signer Signer // Signer used to sign API requests.
 
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
