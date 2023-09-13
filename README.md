@@ -7,7 +7,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/jferrl/go-kraken)](https://goreportcard.com/report/github.com/jferrl/go-kraken)
 [![Github All Releases](https://img.shields.io/github/downloads/jferrl/go-kraken/total.svg)]()
 
-Go library for accessing the Kraken API.
+Go library for accessing the Kraken API. :octopus:
 
 Docs url <https://docs.kraken.com/rest/>.
 
