@@ -44,8 +44,19 @@ func (b Balance) Float64() float64 {
 	return fValue
 }
 
-// AccountBalance represents the user's account balance.
-type AccountBalance map[Asset]Balance
+// ExtendedBalance represents the user's extended balance.
+type ExtendedBalance struct {
+	Balance    Balance `json:"balance"`
+	Credit     string  `json:"credit"`
+	CreditUsed string  `json:"credit_used"`
+	HoldTrade  string  `json:"hold_trade"`
+}
+
+type (
+	// AccountBalance represents the user's account balance.
+	AccountBalance         map[Asset]Balance
+	AccountExtendedBalance map[Asset]ExtendedBalance
+)
 
 // OrderType represents the order type.
 type OrderType string
