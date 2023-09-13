@@ -7,6 +7,7 @@ import (
 	"net/url"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func TestTrading_AddOrder(t *testing.T) {
@@ -114,6 +115,97 @@ func TestTrading_CancelOrder(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Trading.CancelOrder() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestTrading_CancelAllOrders(t *testing.T) {
+	ctx := context.Background()
+
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx context.Context
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *OrderCancelation
+		wantErr bool
+	}{
+		{
+			name:   "cancel orders",
+			fields: fields{apiMock: createFakeServer(http.StatusOK, "cancel_order.json")},
+			args:   args{ctx: ctx},
+			want:   &OrderCancelation{Count: 1},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client()).WithAuth(Secrets{})
+			c.baseURL = baseURL
+
+			got, err := c.Trading.CancelAllOrders(tt.args.ctx)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Trading.CancelAllOrders() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Trading.CancelAllOrders() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestTrading_CancelAllOrdersAfter(t *testing.T) {
+	ctx := context.Background()
+
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts CancelAllOrdersAfterOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *TriggeredOrderCancellation
+		wantErr bool
+	}{
+		{
+			name:   "cancel all orders after 60 seconds",
+			fields: fields{apiMock: createFakeServer(http.StatusOK, "cancel_all_orders_after.json")},
+			args: args{ctx: ctx, opts: CancelAllOrdersAfterOpts{
+				Timeout: time.Minute,
+			},
+			},
+			want: &TriggeredOrderCancellation{
+				CurrentTime: "2023-03-24T17:41:56Z",
+				TriggerTime: "2023-03-24T17:42:56Z",
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client()).WithAuth(Secrets{})
+			c.baseURL = baseURL
+
+			got, err := c.Trading.CancelAllOrdersAfter(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Trading.CancelAllOrdersAfter() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Trading.CancelAllOrdersAfter() = %v, want %v", got, tt.want)
 			}
 		})
 	}

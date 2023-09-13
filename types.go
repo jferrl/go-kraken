@@ -131,6 +131,14 @@ type OrderCancelation struct {
 	Count int `json:"count"`
 }
 
+// TriggeredOrderCancellation defines the response from the CancelAllOrdersAfter method.
+type TriggeredOrderCancellation struct {
+	// Timestamp (RFC3339 format) at which the request was received.
+	CurrentTime string `json:"currentTime"`
+	// Timestamp (RFC3339 format) after which all orders will be cancelled, unless the timer is extended or disabled.
+	TriggerTime string `json:"triggerTime"`
+}
+
 // PairInfo defines the information about an asset pair.
 type PairInfo string
 
@@ -335,6 +343,7 @@ const (
 	Complete TransferStatus = "complete"
 )
 
+// TransferResult defines the result of a transfer.
 type TransferResult struct {
 	TransferID string         `json:"transfer_id"`
 	Status     TransferStatus `json:"status"`

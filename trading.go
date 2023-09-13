@@ -3,6 +3,7 @@ package kraken
 import (
 	"context"
 	"net/http"
+	"time"
 
 	"github.com/google/go-querystring/query"
 )
@@ -76,6 +77,48 @@ func (t *Trading) CancelOrder(ctx context.Context, opts CancelOrderOpts) (*Order
 	}
 
 	var v OrderCancelation
+	if err := t.client.do(req, &v); err != nil {
+		return nil, err
+	}
+
+	return &v, nil
+}
+
+// CancelAllOrders cancels all open orders.
+// Docs: https://docs.kraken.com/rest/#tag/Trading/operation/cancelAll
+func (t *Trading) CancelAllOrders(ctx context.Context) (*OrderCancelation, error) {
+	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelAll", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	var v OrderCancelation
+	if err := t.client.do(req, &v); err != nil {
+		return nil, err
+	}
+
+	return &v, nil
+}
+
+// CancelAllOrdersAfterOpts represents the parameters to cancel all orders after a timeout.
+type CancelAllOrdersAfterOpts struct {
+	Timeout time.Duration `url:"timeout,omitempty"` // Duration (in seconds) to set/extend the timer by
+}
+
+// CancelAllOrdersAfter cancels all open orders after a timeout.
+// Docs: https://docs.kraken.com/rest/#tag/Trading/operation/cancelAllOrdersAfter
+func (t *Trading) CancelAllOrdersAfter(ctx context.Context, opts CancelAllOrdersAfterOpts) (*TriggeredOrderCancellation, error) {
+	body, err := query.Values(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelAllOrdersAfter", body)
+	if err != nil {
+		return nil, err
+	}
+
+	var v TriggeredOrderCancellation
 	if err := t.client.do(req, &v); err != nil {
 		return nil, err
 	}
