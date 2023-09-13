@@ -11,14 +11,14 @@ import (
 	"time"
 )
 
-// Resource represents a Kraken response.
-type Resource struct {
+// Response represents a Kraken response.
+type Response struct {
 	Errors []string `json:"error"`
 	Result any      `json:"result"`
 }
 
 // Error builds a Kraken API error.
-func (r *Resource) Error() error {
+func (r *Response) Error() error {
 	if len(r.Errors) == 0 {
 		return nil
 	}
@@ -102,14 +102,14 @@ func (c *Client) do(req *http.Request, v any) error {
 }
 
 func decodeResponse(r *http.Response, v any) error {
-	var resource Resource
+	var res Response
 
-	resource.Result = v
+	res.Result = v
 
-	err := json.NewDecoder(r.Body).Decode(&resource)
+	err := json.NewDecoder(r.Body).Decode(&res)
 	if err != nil && err != io.EOF {
 		return err
 	}
 
-	return resource.Error()
+	return res.Error()
 }
