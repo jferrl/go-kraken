@@ -3,7 +3,6 @@ package kraken
 import (
 	"context"
 	"net/http"
-	"net/url"
 )
 
 // Account handles communication with the account data related
@@ -13,7 +12,7 @@ type Account service
 // Balance retrieves all cash balances, net of pending withdrawals.
 // Docs: https://docs.kraken.com/rest/#tag/Account-Data/operation/getAccountBalance.
 func (a *Account) Balance(ctx context.Context) (AccountBalance, error) {
-	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "Balance", url.Values{})
+	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "Balance", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -30,7 +29,7 @@ func (a *Account) Balance(ctx context.Context) (AccountBalance, error) {
 // Balance available for trading is calculated as: available balance = balance + credit - credit_used - hold_trade.
 // Docs: https://docs.kraken.com/rest/#tag/Account-Data/operation/getExtendedBalance.
 func (a *Account) ExtendedBalance(ctx context.Context) (AccountExtendedBalance, error) {
-	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "BalanceEx", url.Values{})
+	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "BalanceEx", nil)
 	if err != nil {
 		return nil, err
 	}

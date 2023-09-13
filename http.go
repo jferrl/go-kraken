@@ -57,6 +57,10 @@ func (c *Client) newPublicRequest(ctx context.Context, method string, path strin
 }
 
 func (c *Client) newPrivateRequest(ctx context.Context, method string, path string, body url.Values) (*http.Request, error) {
+	if body == nil {
+		body = url.Values{}
+	}
+
 	reqURL := c.buildPrivateURL(path)
 
 	if otp := OtpFromContext(ctx); otp != "" {
