@@ -321,7 +321,21 @@ func (o OrderBookEntry) Timestamp() int64 {
 	}
 }
 
+// OrderBook defines an order book.
 type OrderBook struct {
 	Asks []OrderBookEntry `json:"asks"`
 	Bids []OrderBookEntry `json:"bids"`
+}
+
+// TransferStatus defines the transfer status.
+type TransferStatus string
+
+const (
+	Pending  TransferStatus = "pending"
+	Complete TransferStatus = "complete"
+)
+
+type TransferResult struct {
+	TransferID string         `json:"transfer_id"`
+	Status     TransferStatus `json:"status"`
 }
