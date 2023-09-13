@@ -170,8 +170,6 @@ func (o OHCLDataOpts) String() string {
 	return v.Encode()
 }
 
-type ohclData map[string]any
-
 // OHCLData retrieves the last entry in the OHLC array is for the current,
 // not-yet-committed frame and will always be present, regardless of the value of since.
 // Docs: https://docs.kraken.com/rest/#tag/Market-Data/operation/getOHLCData
@@ -186,7 +184,7 @@ func (m *MarketData) OHCLData(ctx context.Context, opts OHCLDataOpts) (*OHCL, er
 		return nil, err
 	}
 
-	var v ohclData
+	var v map[string]any
 	if err := m.client.do(req, &v); err != nil {
 		return nil, err
 	}
@@ -209,4 +207,43 @@ func (m *MarketData) OHCLData(ctx context.Context, opts OHCLDataOpts) (*OHCL, er
 		Last: last,
 		Pair: ticks,
 	}, nil
+}
+
+type OrderBookOpts struct {
+	Pair AssetPair `url:"pair,omitempty"`
+	// Count is the maximum number of asks/bids.
+	Count int `url:"count,omitempty"`
+}
+
+// String returns the query string representation of the OrderBookOpts.
+func (o OrderBookOpts) String() string {
+	v, _ := query.Values(o)
+	return v.Encode()
+}
+
+// OrderBook retrieves the order book for a given asset pair.
+func (m *MarketData) OrderBook(ctx context.Context, opts OrderBookOpts) (*OrderBook, error) {
+	if opts.Pair == "" {
+		return nil, errors.New("pair is required")
+	}
+
+	// By default, Kraken returns the order book with 100 asks/bids.
+	if opts.Count != 0 && (opts.Count < 1 || opts.Count > 500) {
+		return nil, errors.New("count must be between 1 and 500")
+	}
+
+	path := fmt.Sprintf("Depth?%s", opts.String())
+	req, err := m.client.newPublicRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	var v map[AssetPair]OrderBook
+	if err := m.client.do(req, &v); err != nil {
+		return nil, err
+	}
+
+	pair := v[opts.Pair]
+
+	return &pair, nil
 }

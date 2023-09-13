@@ -410,3 +410,98 @@ func TestMarketData_TickerInformation(t *testing.T) {
 		})
 	}
 }
+
+func TestMarketData_OrderBook(t *testing.T) {
+	ctx := context.Background()
+
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts OrderBookOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *OrderBook
+		wantErr bool
+	}{
+		{
+			name: "pair is required",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "order_book.json"),
+			},
+			args: args{
+				ctx:  ctx,
+				opts: OrderBookOpts{},
+			},
+			wantErr: true,
+		},
+		{
+			name: "count must be between 1 and 500",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "order_book.json"),
+			},
+			args: args{
+				ctx: ctx,
+				opts: OrderBookOpts{
+					Count: 501,
+				},
+			},
+			wantErr: true,
+		},
+		{
+			name: "get order book",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "order_book.json"),
+			},
+			args: args{
+				ctx: ctx,
+				opts: OrderBookOpts{
+					Pair: XXBTZUSD,
+				},
+			},
+			want: &OrderBook{
+				Asks: []OrderBookEntry{
+					{
+						"30384.10000",
+						"2.059",
+						float64(1688671659),
+					},
+					{
+						"30387.90000",
+						"1.500",
+						float64(1688671380),
+					},
+				},
+				Bids: []OrderBookEntry{
+					{
+						"30297.00000",
+						"1.115",
+						float64(1688671636),
+					},
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Market.OrderBook(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("MarketData.OrderBook() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MarketData.OrderBook() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

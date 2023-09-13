@@ -173,8 +173,6 @@ func (t Ticker) Time() int64 {
 	switch value := v.(type) {
 	case float64:
 		return int64(value)
-	case int64:
-		return value
 	case int:
 		return int64(value)
 	default:
@@ -236,8 +234,6 @@ func (t Ticker) Count() int64 {
 	switch value := v.(type) {
 	case float64:
 		return int64(value)
-	case int64:
-		return value
 	case int:
 		return int64(value)
 	default:
@@ -291,4 +287,41 @@ type Tickers map[AssetPair]AssetTickerInfo
 // Info returns the information about an asset pair.
 func (t Tickers) Info(assetPair AssetPair) AssetTickerInfo {
 	return t[assetPair]
+}
+
+// OrderBookEntry defines an order book entry.
+type OrderBookEntry []any
+
+// Price returns the price of the order book entry.
+func (o OrderBookEntry) Price() string {
+	if v, ok := o[0].(string); ok {
+		return v
+	}
+	return ""
+}
+
+// Volume returns the volume of the order book entry.
+func (o OrderBookEntry) Volume() string {
+	if v, ok := o[1].(string); ok {
+		return v
+	}
+	return ""
+}
+
+// Timestamp returns the timestamp of the order book entry.
+func (o OrderBookEntry) Timestamp() int64 {
+	v := o[2]
+	switch value := v.(type) {
+	case float64:
+		return int64(value)
+	case int:
+		return int64(value)
+	default:
+		return 0
+	}
+}
+
+type OrderBook struct {
+	Asks []OrderBookEntry `json:"asks"`
+	Bids []OrderBookEntry `json:"bids"`
 }
