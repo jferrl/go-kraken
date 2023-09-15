@@ -447,6 +447,7 @@ func TestMarketData_OrderBook(t *testing.T) {
 			args: args{
 				ctx: ctx,
 				opts: OrderBookOpts{
+					Pair:  XXBTZUSD,
 					Count: 501,
 				},
 			},
