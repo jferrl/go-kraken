@@ -8,7 +8,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-// Subaccount handles communication with the Subaccounts related
+// Subaccounts handles communication with the Subaccounts related
 // methods of the Kraken API.
 type Subaccounts service
 

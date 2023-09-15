@@ -9,6 +9,7 @@ import (
 // methods of the Kraken API.
 type WebsocketsAuth service
 
+// WebsocketsToken retrieves a token to use for Websockets authentication.
 func (ws *WebsocketsAuth) WebsocketsToken(ctx context.Context) (*WebsocketsToken, error) {
 	req, err := ws.client.newPrivateRequest(ctx, http.MethodPost, "GetWebSocketsToken", nil)
 	if err != nil {
