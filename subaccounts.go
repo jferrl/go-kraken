@@ -35,7 +35,7 @@ func (s *Subaccounts) Create(ctx context.Context, opts CreateSubaccountOpts) (bo
 		return false, err
 	}
 
-	req, err := s.client.newPrivateRequest(ctx, http.MethodPost, "CreateSubaccount", body)
+	req, err := s.client.newPrivateRequest(ctx, http.MethodPost, "CreateSubaccount", newFormURLEncodedBody(body))
 	if err != nil {
 		return false, err
 	}
@@ -74,7 +74,7 @@ func (s *Subaccounts) Transfer(ctx context.Context, opts TransferOpts) (*Transfe
 		return nil, err
 	}
 
-	req, err := s.client.newPrivateRequest(ctx, http.MethodPost, "AccountTransfer", body)
+	req, err := s.client.newPrivateRequest(ctx, http.MethodPost, "AccountTransfer", newFormURLEncodedBody(body))
 	if err != nil {
 		return nil, err
 	}

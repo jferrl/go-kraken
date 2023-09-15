@@ -56,20 +56,14 @@ func (c *Client) newPublicRequest(ctx context.Context, method string, path strin
 	return req, nil
 }
 
-func (c *Client) newPrivateRequest(ctx context.Context, method string, path string, body url.Values) (*http.Request, error) {
-	if body == nil {
-		body = url.Values{}
-	}
-
+func (c *Client) newPrivateRequest(ctx context.Context, method string, path string, body reqBody) (*http.Request, error) {
 	reqURL := c.buildPrivateURL(path)
 
 	if otp := OtpFromContext(ctx); otp != "" {
-		body.Set("otp", string(otp))
+		body.withOtp(otp)
 	}
 
-	body.Set(nonceKey, fmt.Sprintf("%d", time.Now().UnixNano()))
-
-	req, err := http.NewRequestWithContext(ctx, method, reqURL.String(), strings.NewReader(body.Encode()))
+	req, err := http.NewRequestWithContext(ctx, method, reqURL.String(), strings.NewReader(body.string()))
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +72,7 @@ func (c *Client) newPrivateRequest(ctx context.Context, method string, path stri
 
 	req.Header.Set("API-Key", string(c.apiKey))
 	req.Header.Set("API-Sign", signature)
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded; charset=utf-8")
+	req.Header.Set("Content-Type", body.contentType())
 
 	return req, nil
 }
@@ -112,4 +106,82 @@ func decodeResponse(r *http.Response, v any) error {
 	}
 
 	return res.Error()
+}
+
+type reqBody interface {
+	string() string
+	nonce() string
+	withOtp(otp Otp)
+	contentType() string
+}
+
+type formURLEncodedBody struct {
+	url.Values
+}
+
+func newFormURLEncodedBody(b url.Values) formURLEncodedBody {
+	if b == nil {
+		b = url.Values{}
+	}
+
+	b.Set(nonceKey, fmt.Sprintf("%d", time.Now().UnixNano()))
+	return formURLEncodedBody{b}
+}
+
+func (b formURLEncodedBody) string() string {
+	return b.Encode()
+}
+
+func (b formURLEncodedBody) withOtp(otp Otp) {
+	b.Set("otp", string(otp))
+}
+
+func (b formURLEncodedBody) nonce() string {
+	return b.Get(nonceKey)
+}
+
+func (b formURLEncodedBody) contentType() string {
+	return "application/x-www-form-urlencoded; charset=utf-8"
+}
+
+type jsonMessage map[string]any
+
+type jsonBody struct {
+	jsonMessage
+}
+
+func newJSONBody(b any) (jsonBody, error) {
+	d, err := json.Marshal(b)
+	if err != nil {
+		return jsonBody{}, err
+	}
+
+	var msg jsonMessage
+	err = json.Unmarshal(d, &msg)
+	if err != nil {
+		return jsonBody{}, err
+	}
+
+	msg["nonce"] = fmt.Sprintf("%d", time.Now().UnixNano())
+	return jsonBody{msg}, nil
+}
+
+func (b jsonBody) string() string {
+	str, _ := json.Marshal(b.jsonMessage)
+	return string(str)
+}
+
+func (b jsonBody) withOtp(otp Otp) {
+	b.jsonMessage["otp"] = string(otp)
+}
+
+func (b jsonBody) nonce() string {
+	if nonce, ok := b.jsonMessage["nonce"].(string); ok {
+		return nonce
+	}
+	return ""
+}
+
+func (b jsonBody) contentType() string {
+	return "application/json"
 }

@@ -45,7 +45,7 @@ func (t *Trading) AddOrder(ctx context.Context, opts AddOrderOpts) (*OrderCreati
 		return nil, err
 	}
 
-	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "AddOrder", body)
+	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "AddOrder", newFormURLEncodedBody(body))
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +71,7 @@ func (t *Trading) CancelOrder(ctx context.Context, opts CancelOrderOpts) (*Order
 		return nil, err
 	}
 
-	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelOrder", body)
+	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelOrder", newFormURLEncodedBody(body))
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (t *Trading) CancelOrder(ctx context.Context, opts CancelOrderOpts) (*Order
 // CancelAllOrders cancels all open orders.
 // Docs: https://docs.kraken.com/rest/#tag/Trading/operation/cancelAll
 func (t *Trading) CancelAllOrders(ctx context.Context) (*OrderCancelation, error) {
-	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelAll", nil)
+	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelAll", newFormURLEncodedBody(nil))
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func (t *Trading) CancelAllOrdersAfter(ctx context.Context, opts CancelAllOrders
 		return nil, err
 	}
 
-	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelAllOrdersAfter", body)
+	req, err := t.client.newPrivateRequest(ctx, http.MethodPost, "CancelAllOrdersAfter", newFormURLEncodedBody(body))
 	if err != nil {
 		return nil, err
 	}

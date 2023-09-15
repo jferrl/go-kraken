@@ -12,7 +12,7 @@ type Account service
 // Balance retrieves all cash balances, net of pending withdrawals.
 // Docs: https://docs.kraken.com/rest/#tag/Account-Data/operation/getAccountBalance.
 func (a *Account) Balance(ctx context.Context) (AccountBalance, error) {
-	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "Balance", nil)
+	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "Balance", newFormURLEncodedBody(nil))
 	if err != nil {
 		return nil, err
 	}
@@ -29,7 +29,7 @@ func (a *Account) Balance(ctx context.Context) (AccountBalance, error) {
 // Balance available for trading is calculated as: available balance = balance + credit - credit_used - hold_trade.
 // Docs: https://docs.kraken.com/rest/#tag/Account-Data/operation/getExtendedBalance.
 func (a *Account) ExtendedBalance(ctx context.Context) (AccountExtendedBalance, error) {
-	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "BalanceEx", nil)
+	req, err := a.client.newPrivateRequest(ctx, http.MethodPost, "BalanceEx", newFormURLEncodedBody(nil))
 	if err != nil {
 		return nil, err
 	}

@@ -5,7 +5,6 @@ import (
 	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/base64"
-	"net/url"
 )
 
 const nonceKey = "nonce"
@@ -29,9 +28,9 @@ func NewSigner(s string) Signer {
 
 // Sign signs the Kraken API request.
 // Docs: https://www.kraken.com/help/api#general-usage for more information
-func (s Signer) Sign(v url.Values, path string) string {
+func (s Signer) Sign(v reqBody, path string) string {
 	sha := sha256.New()
-	sha.Write([]byte(v.Get(nonceKey) + v.Encode()))
+	sha.Write([]byte(v.nonce() + v.string()))
 
 	mac := hmac.New(sha512.New, s.Secret)
 	mac.Write(append([]byte(path), sha.Sum(nil)...))

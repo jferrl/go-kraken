@@ -11,7 +11,7 @@ type WebsocketsAuth service
 
 // WebsocketsToken retrieves a token to use for Websockets authentication.
 func (ws *WebsocketsAuth) WebsocketsToken(ctx context.Context) (*WebsocketsToken, error) {
-	req, err := ws.client.newPrivateRequest(ctx, http.MethodPost, "GetWebSocketsToken", nil)
+	req, err := ws.client.newPrivateRequest(ctx, http.MethodPost, "GetWebSocketsToken", newFormURLEncodedBody(nil))
 	if err != nil {
 		return nil, err
 	}
