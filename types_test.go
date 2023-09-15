@@ -5,23 +5,23 @@ import (
 	"testing"
 )
 
-func TestTick_Values(t *testing.T) {
+func TestTickerValues_Ticker(t *testing.T) {
 	tests := []struct {
-		name     string
-		tr       Ticker
-		wantTick TickerValues
+		name       string
+		tr         TickerValues
+		wantTicker Ticker
 	}{
 		{
-			name: "invalid tick",
-			tr:   Ticker{},
+			name: "invalid ticker",
+			tr:   TickerValues{},
 		},
 		{
 			name: "tick with invalid values",
-			tr:   Ticker{"0", 1, 2, 3, 4, 5, 6, "7"},
+			tr:   TickerValues{"0", 1, 2, 3, 4, 5, 6, "7"},
 		},
 		{
 			name: "tick with valid values",
-			tr: Ticker{
+			tr: TickerValues{
 				1688671200,
 				"30306.1",
 				"30306.2",
@@ -31,7 +31,7 @@ func TestTick_Values(t *testing.T) {
 				"3.39243896",
 				23,
 			},
-			wantTick: TickerValues{
+			wantTicker: Ticker{
 				Time:   1688671200,
 				Open:   "30306.1",
 				High:   "30306.2",
@@ -45,8 +45,44 @@ func TestTick_Values(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.tr.Values(); !reflect.DeepEqual(got, tt.wantTick) {
-				t.Errorf("tick = %v, want %v", got, tt.wantTick)
+			if got := tt.tr.Ticker(); !reflect.DeepEqual(got, tt.wantTicker) {
+				t.Errorf("TickerValues.Ticker() = %v, want %v", got, tt.wantTicker)
+			}
+		})
+	}
+}
+
+func TestOrderBookEntries_OrderBookEntry(t *testing.T) {
+	tests := []struct {
+		name string
+		o    OrderBookEntries
+		want OrderBookEntry
+	}{
+		{
+			name: "invalid order book entry",
+		},
+		{
+			name: "order book entry with invalid values",
+			o: OrderBookEntries{
+				1, 2, "fake",
+			},
+		},
+		{
+			name: "order book entry with valid values",
+			o: OrderBookEntries{
+				"30306.1", "30306.2", 3242,
+			},
+			want: OrderBookEntry{
+				Price:     "30306.1",
+				Volume:    "30306.2",
+				Timestamp: 3242,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.o.OrderBookEntry(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("OrderBookEntries.OrderBookEntry() = %v, want %v", got, tt.want)
 			}
 		})
 	}

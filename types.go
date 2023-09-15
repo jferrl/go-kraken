@@ -155,11 +155,11 @@ type WebsocketsToken struct {
 	Expires int64  `json:"expires"`
 }
 
-// Ticker represents a ticker.
-type Ticker []any
-
 // TickerValues represents the values of a ticker.
-type TickerValues struct {
+type TickerValues []any
+
+// Ticker represents a ticker.
+type Ticker struct {
 	Open   string
 	High   string
 	Low    string
@@ -170,13 +170,8 @@ type TickerValues struct {
 	Time   int64
 }
 
-// Valid returns true if the tick is valid.
-func (t Ticker) Valid() bool {
-	return len(t) == 8
-}
-
-// Time returns the time of the tick.
-func (t Ticker) Time() int64 {
+// time returns the time of the tick.
+func (t TickerValues) time() int64 {
 	v := t[0]
 	switch value := v.(type) {
 	case float64:
@@ -188,56 +183,56 @@ func (t Ticker) Time() int64 {
 	}
 }
 
-// Open returns the open price of the tick.
-func (t Ticker) Open() string {
+// open returns the open price of the tick.
+func (t TickerValues) open() string {
 	if v, ok := t[1].(string); ok {
 		return v
 	}
 	return ""
 }
 
-// High returns the high price of the tick.
-func (t Ticker) High() string {
+// high returns the high price of the tick.
+func (t TickerValues) high() string {
 	if v, ok := t[2].(string); ok {
 		return v
 	}
 	return ""
 }
 
-// Low returns the low price of the tick.
-func (t Ticker) Low() string {
+// low returns the low price of the tick.
+func (t TickerValues) low() string {
 	if v, ok := t[3].(string); ok {
 		return v
 	}
 	return ""
 }
 
-// Close returns the close price of the tick.
-func (t Ticker) Close() string {
+// close returns the close price of the tick.
+func (t TickerValues) close() string {
 	if v, ok := t[4].(string); ok {
 		return v
 	}
 	return ""
 }
 
-// Vwap returns the vwap of the tick.
-func (t Ticker) Vwap() string {
+// vwap returns the vwap of the tick.
+func (t TickerValues) vwap() string {
 	if v, ok := t[5].(string); ok {
 		return v
 	}
 	return ""
 }
 
-// Volume returns the volume of the tick.
-func (t Ticker) Volume() string {
+// volume returns the volume of the tick.
+func (t TickerValues) volume() string {
 	if v, ok := t[6].(string); ok {
 		return v
 	}
 	return ""
 }
 
-// Count returns the count of the tick.
-func (t Ticker) Count() int64 {
+// count returns the count of the tick.
+func (t TickerValues) count() int64 {
 	v := t[7]
 	switch value := v.(type) {
 	case float64:
@@ -249,26 +244,26 @@ func (t Ticker) Count() int64 {
 	}
 }
 
-// Values returns the values of the tick.
-func (t Ticker) Values() TickerValues {
-	if !t.Valid() {
-		return TickerValues{}
+// Ticker returns the values of the tick.
+func (t TickerValues) Ticker() Ticker {
+	if len(t) != 8 {
+		return Ticker{}
 	}
 
-	return TickerValues{
-		Open:   t.Open(),
-		High:   t.High(),
-		Low:    t.Low(),
-		Close:  t.Close(),
-		Vwap:   t.Vwap(),
-		Volume: t.Volume(),
-		Count:  t.Count(),
-		Time:   t.Time(),
+	return Ticker{
+		Open:   t.open(),
+		High:   t.high(),
+		Low:    t.low(),
+		Close:  t.close(),
+		Vwap:   t.vwap(),
+		Volume: t.volume(),
+		Count:  t.count(),
+		Time:   t.time(),
 	}
 }
 
 // OHCLTickers is a slice of Tick.
-type OHCLTickers []Ticker
+type OHCLTickers []TickerValues
 
 // OHCL represents the OHCL data. It represents the "Open-high-low-close chart".
 type OHCL struct {
@@ -297,27 +292,34 @@ func (t Tickers) Info(assetPair AssetPair) AssetTickerInfo {
 	return t[assetPair]
 }
 
-// OrderBookEntry defines an order book entry.
-type OrderBookEntry []any
+// OrderBookEntries defines an order book entries.
+type OrderBookEntries []any
 
-// Price returns the price of the order book entry.
-func (o OrderBookEntry) Price() string {
+// OrderBookEntry defines an order book entry.
+type OrderBookEntry struct {
+	Price     string
+	Volume    string
+	Timestamp int64
+}
+
+// price returns the price of the order book entries.
+func (o OrderBookEntries) price() string {
 	if v, ok := o[0].(string); ok {
 		return v
 	}
 	return ""
 }
 
-// Volume returns the volume of the order book entry.
-func (o OrderBookEntry) Volume() string {
+// volume returns the volume of the order book entries.
+func (o OrderBookEntries) volume() string {
 	if v, ok := o[1].(string); ok {
 		return v
 	}
 	return ""
 }
 
-// Timestamp returns the timestamp of the order book entry.
-func (o OrderBookEntry) Timestamp() int64 {
+// timestamp returns the timestamp of the order book entries.
+func (o OrderBookEntries) timestamp() int64 {
 	v := o[2]
 	switch value := v.(type) {
 	case float64:
@@ -329,10 +331,23 @@ func (o OrderBookEntry) Timestamp() int64 {
 	}
 }
 
+// OrderBookEntry returns the values of the order book entries.
+func (o OrderBookEntries) OrderBookEntry() OrderBookEntry {
+	if len(o) != 3 {
+		return OrderBookEntry{}
+	}
+
+	return OrderBookEntry{
+		Price:     o.price(),
+		Volume:    o.volume(),
+		Timestamp: o.timestamp(),
+	}
+}
+
 // OrderBook defines an order book.
 type OrderBook struct {
-	Asks []OrderBookEntry `json:"asks"`
-	Bids []OrderBookEntry `json:"bids"`
+	Asks []OrderBookEntries `json:"asks"`
+	Bids []OrderBookEntries `json:"bids"`
 }
 
 // TransferStatus defines the transfer status.

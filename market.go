@@ -209,6 +209,7 @@ func (m *MarketData) OHCLData(ctx context.Context, opts OHCLDataOpts) (*OHCL, er
 	}, nil
 }
 
+// OrderBookOpts represents the parameters to get the order book for a given asset pair.
 type OrderBookOpts struct {
 	Pair AssetPair `url:"pair,omitempty"`
 	// Count is the maximum number of asks/bids.

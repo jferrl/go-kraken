@@ -465,7 +465,7 @@ func TestMarketData_OrderBook(t *testing.T) {
 				},
 			},
 			want: &OrderBook{
-				Asks: []OrderBookEntry{
+				Asks: []OrderBookEntries{
 					{
 						"30384.10000",
 						"2.059",
@@ -477,7 +477,7 @@ func TestMarketData_OrderBook(t *testing.T) {
 						float64(1688671380),
 					},
 				},
-				Bids: []OrderBookEntry{
+				Bids: []OrderBookEntries{
 					{
 						"30297.00000",
 						"1.115",
