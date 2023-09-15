@@ -6,12 +6,6 @@ import (
 )
 
 func Test_newFormURLEncodedBody(t *testing.T) {
-	type fakeJSON struct {
-		Asset  string `json:"asset"`
-		Cursor string `json:"cursor"`
-		Limit  int    `json:"limit"`
-	}
-
 	type args struct {
 		b url.Values
 	}
