@@ -419,3 +419,8 @@ type Strategies struct {
 	NextCursor string     `json:"next_cursor"`
 	Items      []Strategy `json:"items"`
 }
+
+// StrategyOperationStatus .
+type StrategyOperationStatus struct {
+	Pending bool `json:"pending"`
+}

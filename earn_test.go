@@ -84,3 +84,123 @@ func TestEarn_Strategies(t *testing.T) {
 		})
 	}
 }
+
+func TestEarn_AllocationStatus(t *testing.T) {
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts StatusOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *StrategyOperationStatus
+		wantErr bool
+	}{
+		{
+			name: "strategy id is required",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				ctx: context.Background(),
+			},
+			wantErr: true,
+		},
+		{
+			name: "get allocation status",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "strategy_status.json"),
+			},
+			args: args{
+				ctx: context.Background(),
+				opts: StatusOpts{
+					StrategyID: "ESRFUO3-Q62XD-WIOIL7",
+				},
+			},
+			want: &StrategyOperationStatus{
+				Pending: false,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Earn.AllocationStatus(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Earn.AllocationStatus() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Earn.AllocationStatus() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestEarn_DeallocationStatus(t *testing.T) {
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts StatusOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *StrategyOperationStatus
+		wantErr bool
+	}{
+		{
+			name: "strategy id is required",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				ctx: context.Background(),
+			},
+			wantErr: true,
+		},
+		{
+			name: "get deallocation status",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "strategy_status.json"),
+			},
+			args: args{
+				ctx: context.Background(),
+				opts: StatusOpts{
+					StrategyID: "ESRFUO3-Q62XD-WIOIL7",
+				},
+			},
+			want: &StrategyOperationStatus{
+				Pending: false,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Earn.DeallocationStatus(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Earn.DeallocationStatus() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Earn.DeallocationStatus() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
