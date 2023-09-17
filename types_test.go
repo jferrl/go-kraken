@@ -87,3 +87,28 @@ func TestOrderBookEntries_OrderBookEntry(t *testing.T) {
 		})
 	}
 }
+
+func TestBalance_Float64(t *testing.T) {
+	tests := []struct {
+		name string
+		b    Balance
+		want float64
+	}{
+		{
+			name: "invalid balance",
+			b:    "fake",
+		},
+		{
+			name: "valid balance",
+			b:    "1.2345678901",
+			want: 1.2345678901,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.b.Float64(); got != tt.want {
+				t.Errorf("Balance.Float64() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
