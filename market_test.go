@@ -26,6 +26,16 @@ func TestMarketData_Time(t *testing.T) {
 		wantErr bool
 	}{
 		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusFound, ""),
+			},
+			args: args{
+				ctx: nil,
+			},
+			wantErr: true,
+		},
+		{
 			name: "error getting server time",
 			fields: fields{
 				apiMock: createFakeServer(http.StatusBadRequest, "error_response.json"),
@@ -85,6 +95,16 @@ func TestMarketData_SystemStatus(t *testing.T) {
 		wantErr bool
 	}{
 		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusFound, ""),
+			},
+			args: args{
+				ctx: nil,
+			},
+			wantErr: true,
+		},
+		{
 			name: "get server time",
 			fields: fields{
 				apiMock: createFakeServer(http.StatusOK, "system_status.json"),
@@ -135,6 +155,16 @@ func TestMarketData_Assets(t *testing.T) {
 		want    AssetInfo
 		wantErr bool
 	}{
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusFound, ""),
+			},
+			args: args{
+				ctx: nil,
+			},
+			wantErr: true,
+		},
 		{
 			name: "get assets",
 			fields: fields{
@@ -196,6 +226,16 @@ func Test_TradableAssetPairs(t *testing.T) {
 		want    AssetPairInfo
 		wantErr bool
 	}{
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusFound, ""),
+			},
+			args: args{
+				ctx: nil,
+			},
+			wantErr: true,
+		},
 		{
 			name: "get tradable asset pairs",
 			fields: fields{
@@ -285,6 +325,19 @@ func TestMarketData_OHCLData(t *testing.T) {
 			wantErr: true,
 		},
 		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusFound, ""),
+			},
+			args: args{
+				ctx: nil,
+				opts: OHCLDataOpts{
+					Pair: XXBTZUSD,
+				},
+			},
+			wantErr: true,
+		},
+		{
 			name: "get OHCL data",
 			fields: fields{
 				apiMock: createFakeServer(http.StatusOK, "ohcl_data.json"),
@@ -365,6 +418,16 @@ func TestMarketData_TickerInformation(t *testing.T) {
 		wantErr bool
 	}{
 		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusFound, ""),
+			},
+			args: args{
+				ctx: nil,
+			},
+			wantErr: true,
+		},
+		{
 			name: "get ticker information",
 			fields: fields{
 				apiMock: createFakeServer(http.StatusOK, "ticker.json"),
@@ -436,6 +499,19 @@ func TestMarketData_OrderBook(t *testing.T) {
 			args: args{
 				ctx:  ctx,
 				opts: OrderBookOpts{},
+			},
+			wantErr: true,
+		},
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusFound, ""),
+			},
+			args: args{
+				ctx: nil,
+				opts: OrderBookOpts{
+					Pair: XXBTZUSD,
+				},
 			},
 			wantErr: true,
 		},
