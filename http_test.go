@@ -19,7 +19,7 @@ func Test_newFormURLEncodedBody(t *testing.T) {
 		wantErr         bool
 	}{
 		{
-			name: "new json body as reference",
+			name: "new form body",
 			args: args{
 				b: url.Values{
 					"asset":  []string{"XBT"},
