@@ -43,7 +43,7 @@ func TestAccount_Balance(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
 
-			c := New(tt.fields.apiMock.Client()).WithAuth(Secrets{})
+			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
 			got, err := c.Account.Balance(tt.args.ctx)
@@ -98,7 +98,7 @@ func TestAccount_ExtendedBalance(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
 
-			c := New(tt.fields.apiMock.Client()).WithAuth(Secrets{})
+			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
 			got, err := c.Account.ExtendedBalance(tt.args.ctx)

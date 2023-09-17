@@ -62,7 +62,7 @@ func TestTrading_AddOrder(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
 
-			c := New(tt.fields.apiMock.Client()).WithAuth(Secrets{})
+			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
 			got, err := c.Trading.AddOrder(tt.args.ctx, tt.args.opts)
@@ -105,7 +105,7 @@ func TestTrading_CancelOrder(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
 
-			c := New(tt.fields.apiMock.Client()).WithAuth(Secrets{})
+			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
 			got, err := c.Trading.CancelOrder(tt.args.ctx, tt.args.opts)
@@ -147,7 +147,7 @@ func TestTrading_CancelAllOrders(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
 
-			c := New(tt.fields.apiMock.Client()).WithAuth(Secrets{})
+			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
 			got, err := c.Trading.CancelAllOrders(tt.args.ctx)
@@ -196,7 +196,7 @@ func TestTrading_CancelAllOrdersAfter(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
 
-			c := New(tt.fields.apiMock.Client()).WithAuth(Secrets{})
+			c := New(tt.fields.apiMock.Client())
 			c.baseURL = baseURL
 
 			got, err := c.Trading.CancelAllOrdersAfter(tt.args.ctx, tt.args.opts)

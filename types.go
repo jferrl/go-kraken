@@ -363,3 +363,59 @@ type TransferResult struct {
 	TransferID string         `json:"transfer_id"`
 	Status     TransferStatus `json:"status"`
 }
+
+// StrategyLockType .
+type StrategyLockType string
+
+const (
+	Flex    StrategyLockType = "flex"
+	Bounded StrategyLockType = "bounded"
+	Timed   StrategyLockType = "timed"
+	Instant StrategyLockType = "instant"
+)
+
+// LockType .
+type LockType struct {
+	Type            StrategyLockType `json:"type"`
+	PayoutFrequency int              `json:"payout_frequency"`
+}
+
+// AprEstimate .
+type AprEstimate struct {
+	Low  string `json:"low"`
+	High string `json:"high"`
+}
+
+// AutoCompound .
+type AutoCompound struct {
+	Default bool   `json:"default"`
+	Type    string `json:"type"`
+}
+
+// YieldSource .
+type YieldSource struct {
+	Type string `json:"type"`
+}
+
+// Strategy represents a strategy.
+type Strategy struct {
+	ID                        string       `json:"id"`
+	AllocationFee             any          `json:"allocation_fee"`
+	AllocationRestrictionInfo []string     `json:"allocation_restriction_info"`
+	AprEstimate               AprEstimate  `json:"apr_estimate"`
+	Asset                     Asset        `json:"asset"`
+	AutoCompound              AutoCompound `json:"auto_compound"`
+	CanAllocate               bool         `json:"can_allocate"`
+	CanDeallocate             bool         `json:"can_deallocate"`
+	DeallocationFee           any          `json:"deallocation_fee"`
+	LockType                  LockType     `json:"lock_type"`
+	UserCap                   string       `json:"user_cap"`
+	UserMinAllocation         string       `json:"user_min_allocation"`
+	YieldSource               YieldSource  `json:"yield_source"`
+}
+
+// Strategies represents a list of strategies.
+type Strategies struct {
+	NextCursor string     `json:"next_cursor"`
+	Items      []Strategy `json:"items"`
+}

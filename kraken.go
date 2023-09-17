@@ -37,6 +37,7 @@ type Client struct {
 	Account        *Account
 	Trading        *Trading
 	Subaccounts    *Subaccounts
+	Earn           *Earn
 	WebsocketsAuth *WebsocketsAuth
 }
 
@@ -64,6 +65,7 @@ func New(httpClient *http.Client) *Client {
 	c.Account = (*Account)(&c.common)
 	c.Trading = (*Trading)(&c.common)
 	c.Subaccounts = (*Subaccounts)(&c.common)
+	c.Earn = (*Earn)(&c.common)
 	c.WebsocketsAuth = (*WebsocketsAuth)(&c.common)
 
 	return c
