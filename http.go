@@ -84,15 +84,7 @@ func (c *Client) do(req *http.Request, v any) error {
 	}
 	defer resp.Body.Close()
 
-	switch v := v.(type) {
-	case nil:
-	case io.Writer:
-		_, err = io.Copy(v, resp.Body)
-	default:
-		err = decodeResponse(resp, v)
-	}
-
-	return err
+	return decodeResponse(resp, v)
 }
 
 func decodeResponse(r *http.Response, v any) error {
