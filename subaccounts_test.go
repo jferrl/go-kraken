@@ -99,9 +99,16 @@ func TestSubaccounts_Transfer(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name:    "error creating request",
-			fields:  fields{apiMock: createFakeServer(http.StatusOK, "")},
-			args:    args{},
+			name:   "error creating request",
+			fields: fields{apiMock: createFakeServer(http.StatusOK, "")},
+			args: args{
+				opts: TransferOpts{
+					Asset:  "XBT",
+					Amount: "0.1",
+					From:   "master",
+					To:     "subaccount",
+				},
+			},
 			wantErr: true,
 		},
 		{
