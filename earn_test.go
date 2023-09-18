@@ -7,6 +7,7 @@ import (
 	"net/url"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func TestEarn_Strategies(t *testing.T) {
@@ -234,6 +235,96 @@ func TestEarn_DeallocationStatus(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Earn.DeallocationStatus() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestEarn_Allocations(t *testing.T) {
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts AllocationsOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *Allocations
+		wantErr bool
+	}{
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				opts: AllocationsOpts{},
+			},
+			wantErr: true,
+		},
+		{
+			name: "list allocations",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "allocations.json"),
+			},
+			args: args{
+				ctx:  context.Background(),
+				opts: AllocationsOpts{},
+			},
+			want: &Allocations{
+				ConvertedAsset: "USD",
+				TotalAllocated: "49.2398",
+				TotalRewarded:  "0.0675",
+				NextCursor:     "2",
+				Items: []AllocationsItem{
+					{
+						StrategyID:  "ESDQCOL-WTZEU-NU55QF",
+						NativeAsset: "ETH",
+						AmountAllocated: AmountAllocated{
+							Bonding: AllocationStatus{
+								Native:          "0.0210000000",
+								Converted:       "39.0645",
+								AllocationCount: 2,
+								Allocations: []Allocation{
+									{
+										CreatedAt: time.Date(2023, 7, 6, 10, 52, 5, 0, time.UTC),
+										Expires:   time.Date(2023, 8, 19, 2, 34, 5, 807000000, time.UTC),
+										Native:    "0.0010000000",
+										Converted: "1.8602",
+									},
+								},
+							},
+							Total: Total{
+								Native:    "0.0210000000",
+								Converted: "39.0645",
+							},
+						},
+						TotalRewarded: Total{
+							Native:    "0",
+							Converted: "0.0000",
+						},
+					},
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Earn.Allocations(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Earn.Allocations() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Earn.Allocations() = %v, want %v", got, tt.want)
 			}
 		})
 	}

@@ -2,6 +2,7 @@ package kraken
 
 import (
 	"strconv"
+	"time"
 )
 
 // ServerTime represents the server time.
@@ -424,4 +425,61 @@ type Strategies struct {
 // StrategyOperationStatus .
 type StrategyOperationStatus struct {
 	Pending bool `json:"pending"`
+}
+
+// Allocations represents a list of allocations.
+type Allocations struct {
+	ConvertedAsset string            `json:"converted_asset"`
+	TotalAllocated string            `json:"total_allocated"`
+	TotalRewarded  string            `json:"total_rewarded"`
+	NextCursor     string            `json:"next_cursor"`
+	Items          []AllocationsItem `json:"items"`
+}
+
+// Allocation .
+type Allocation struct {
+	CreatedAt time.Time `json:"created_at"`
+	Expires   time.Time `json:"expires"`
+	Native    string    `json:"native"`
+	Converted string    `json:"converted"`
+}
+
+// AllocationStatus .
+type AllocationStatus struct {
+	Native          string       `json:"native"`
+	Converted       string       `json:"converted"`
+	AllocationCount int          `json:"allocation_count"`
+	Allocations     []Allocation `json:"allocations"`
+}
+
+// Total .
+type Total struct {
+	Native    string `json:"native"`
+	Converted string `json:"converted"`
+}
+
+// AmountAllocated .
+type AmountAllocated struct {
+	Bonding   AllocationStatus `json:"bonding"`
+	ExitQueue AllocationStatus `json:"exit_queue"`
+	Pending   AllocationStatus `json:"pending"`
+	Total     Total            `json:"total"`
+	Unbonding AllocationStatus `json:"unbonding"`
+}
+
+// Payout .
+type Payout struct {
+	Start             time.Time `json:"period_start"`
+	End               time.Time `json:"period_end"`
+	AccumulatedReward Total     `json:"accumulated_reward"`
+	EstimatedReward   Total     `json:"estimated_reward"`
+}
+
+// AllocationsItem .
+type AllocationsItem struct {
+	StrategyID      string          `json:"strategy_id"`
+	NativeAsset     Asset           `json:"native_asset"`
+	Payout          Payout          `json:"payout"`
+	AmountAllocated AmountAllocated `json:"amount_allocated"`
+	TotalRewarded   Total           `json:"total_rewarded"`
 }
