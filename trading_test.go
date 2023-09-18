@@ -28,6 +28,16 @@ func TestTrading_AddOrder(t *testing.T) {
 		wantErr bool
 	}{
 		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				opts: AddOrderOpts{},
+			},
+			wantErr: true,
+		},
+		{
 			name: "add order",
 			fields: fields{
 				apiMock: createFakeServer(http.StatusOK, "add_order.json"),
@@ -95,10 +105,25 @@ func TestTrading_CancelOrder(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:   "cancel order",
-			fields: fields{apiMock: createFakeServer(http.StatusOK, "cancel_order.json")},
-			args:   args{ctx: ctx, opts: CancelOrderOpts{TransactionID: "OUF4EM-FRGI2-MQMWZD"}},
-			want:   &OrderCancelation{Count: 1},
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				opts: CancelOrderOpts{},
+			},
+			wantErr: true,
+		},
+		{
+			name: "cancel order",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "cancel_order.json"),
+			},
+			args: args{
+				ctx:  ctx,
+				opts: CancelOrderOpts{TransactionID: "OUF4EM-FRGI2-MQMWZD"},
+			},
+			want: &OrderCancelation{Count: 1},
 		},
 	}
 	for _, tt := range tests {
@@ -136,6 +161,14 @@ func TestTrading_CancelAllOrders(t *testing.T) {
 		want    *OrderCancelation
 		wantErr bool
 	}{
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args:    args{},
+			wantErr: true,
+		},
 		{
 			name:   "cancel orders",
 			fields: fields{apiMock: createFakeServer(http.StatusOK, "cancel_order.json")},
@@ -179,6 +212,16 @@ func TestTrading_CancelAllOrdersAfter(t *testing.T) {
 		want    *TriggeredOrderCancellation
 		wantErr bool
 	}{
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				opts: CancelAllOrdersAfterOpts{},
+			},
+			wantErr: true,
+		},
 		{
 			name:   "cancel all orders after 60 seconds",
 			fields: fields{apiMock: createFakeServer(http.StatusOK, "cancel_all_orders_after.json")},
