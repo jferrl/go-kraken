@@ -54,7 +54,8 @@ type ExtendedBalance struct {
 
 type (
 	// AccountBalance represents the user's account balance.
-	AccountBalance         map[Asset]Balance
+	AccountBalance map[Asset]Balance
+	// AccountExtendedBalance represents the user's account extended balance.
 	AccountExtendedBalance map[Asset]ExtendedBalance
 )
 

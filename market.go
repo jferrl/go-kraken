@@ -121,6 +121,7 @@ func (m *MarketData) TradableAssetPairs(ctx context.Context, opts TradableAssetP
 	return v, nil
 }
 
+// TickerInformationOpts represents the parameters to get ticker information about the asset pairs available for trading on Kraken.
 type TickerInformationOpts struct {
 	Pairs []AssetPair `url:"pair,omitempty"`
 }
@@ -159,6 +160,7 @@ func (m *MarketData) TickerInformation(ctx context.Context, opts TickerInformati
 	return v, nil
 }
 
+// OHCLDataOpts represents the parameters to get OHLC data for a given asset pair.
 type OHCLDataOpts struct {
 	Pair     AssetPair `url:"pair,omitempty"`
 	Interval int       `url:"interval,omitempty"`

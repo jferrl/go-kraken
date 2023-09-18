@@ -10,6 +10,7 @@ import (
 // methods of the Kraken API.
 type Earn service
 
+// StatusOpts represents the parameters to get the status of the last allocation or deallocation request.
 type StatusOpts struct {
 	StrategyID string `json:"strategy_id,omitempty"`
 }
@@ -64,7 +65,7 @@ func (e *Earn) DeallocationStatus(ctx context.Context, opts StatusOpts) (*Strate
 	return &v, nil
 }
 
-// StrategiesOpts
+// StrategiesOpts represents the parameters to list earn strategies.
 type StrategiesOpts struct {
 	Ascending bool             `json:"ascending,omitempty"`
 	Asset     Asset            `json:"asset,omitempty"`
