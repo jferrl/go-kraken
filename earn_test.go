@@ -25,6 +25,16 @@ func TestEarn_Strategies(t *testing.T) {
 		wantErr bool
 	}{
 		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				opts: StrategiesOpts{},
+			},
+			wantErr: true,
+		},
+		{
 			name: "list strategies",
 			fields: fields{
 				apiMock: createFakeServer(http.StatusOK, "strategies.json"),
@@ -111,6 +121,18 @@ func TestEarn_AllocationStatus(t *testing.T) {
 			wantErr: true,
 		},
 		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				opts: StatusOpts{
+					StrategyID: "ESRFUO3-Q62XD-WIOIL7",
+				},
+			},
+			wantErr: true,
+		},
+		{
 			name: "get allocation status",
 			fields: fields{
 				apiMock: createFakeServer(http.StatusOK, "strategy_status.json"),
@@ -167,6 +189,18 @@ func TestEarn_DeallocationStatus(t *testing.T) {
 			},
 			args: args{
 				ctx: context.Background(),
+			},
+			wantErr: true,
+		},
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args: args{
+				opts: StatusOpts{
+					StrategyID: "ESRFUO3-Q62XD-WIOIL7",
+				},
 			},
 			wantErr: true,
 		},
