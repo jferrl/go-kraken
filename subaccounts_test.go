@@ -36,6 +36,14 @@ func TestSubaccounts_Create(t *testing.T) {
 			wantErr: true,
 		},
 		{
+			name:   "error creating request",
+			fields: fields{apiMock: createFakeServer(http.StatusOK, "")},
+			args: args{
+				opts: CreateSubaccountOpts{Username: "test", Email: "test"},
+			},
+			wantErr: true,
+		},
+		{
 			name:   "create subaccount",
 			fields: fields{apiMock: createFakeServer(http.StatusOK, "create_subaccount.json")},
 			args: args{
@@ -88,6 +96,12 @@ func TestSubaccounts_Transfer(t *testing.T) {
 				ctx:  ctx,
 				opts: TransferOpts{},
 			},
+			wantErr: true,
+		},
+		{
+			name:    "error creating request",
+			fields:  fields{apiMock: createFakeServer(http.StatusOK, "")},
+			args:    args{},
 			wantErr: true,
 		},
 		{

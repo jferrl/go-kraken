@@ -26,6 +26,14 @@ func TestAccount_Balance(t *testing.T) {
 		wantErr bool
 	}{
 		{
+			name: "error creating request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args:    args{},
+			wantErr: true,
+		},
+		{
 			name: "get account balance",
 			fields: fields{
 				apiMock: createFakeServer(http.StatusOK, "account_balance.json"),
@@ -74,6 +82,14 @@ func TestAccount_ExtendedBalance(t *testing.T) {
 		want    AccountExtendedBalance
 		wantErr bool
 	}{
+		{
+			name: "error creating request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args:    args{},
+			wantErr: true,
+		},
 		{
 			name: "get extended account balance",
 			fields: fields{
