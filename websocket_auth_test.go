@@ -26,6 +26,12 @@ func TestWebsocketsAuth_WebsocketsToken(t *testing.T) {
 		wantErr bool
 	}{
 		{
+			name:    "error creating request",
+			fields:  fields{apiMock: createFakeServer(http.StatusOK, "")},
+			args:    args{},
+			wantErr: true,
+		},
+		{
 			name:   "get websockets token",
 			fields: fields{apiMock: createFakeServer(http.StatusOK, "ws_auth.json")},
 			args:   args{ctx: ctx},
