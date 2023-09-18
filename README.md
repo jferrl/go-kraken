@@ -5,7 +5,6 @@
 [![CodeQL](https://github.com/jferrl/go-kraken/workflows/CodeQL/badge.svg)](https://github.com/jferrl/go-kraken/actions?query=workflow%3ACodeQL)
 [![codecov](https://codecov.io/gh/jferrl/go-kraken/branch/main/graph/badge.svg?token=68I4BZF235)](https://codecov.io/gh/jferrl/go-kraken)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jferrl/go-kraken)](https://goreportcard.com/report/github.com/jferrl/go-kraken)
-[![Github All Releases](https://img.shields.io/github/downloads/jferrl/go-kraken/total.svg)]()
 
 Go library for accessing the Kraken API. :octopus:
 
