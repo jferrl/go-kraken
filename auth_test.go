@@ -15,6 +15,11 @@ func TestOtpFromContext(t *testing.T) {
 		want Otp
 	}{
 		{
+			name: "nil context",
+			args: args{ctx: nil},
+			want: "",
+		},
+		{
 			name: "empty context",
 			args: args{ctx: context.Background()},
 			want: "",

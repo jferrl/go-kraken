@@ -16,11 +16,19 @@ type otpKey string
 
 // OtpFromContext returns the one-time password from the context.
 func OtpFromContext(ctx context.Context) Otp {
+	if ctx == nil {
+		return ""
+	}
+
 	otp, _ := ctx.Value(otpKey("otp")).(Otp)
 	return otp
 }
 
 // ContextWithOtp adds a one-time password to the context.
 func ContextWithOtp(ctx context.Context, otp Otp) context.Context {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
 	return context.WithValue(ctx, otpKey("otp"), otp)
 }

@@ -11,7 +11,7 @@ import (
 )
 
 func TestTrading_AddOrder(t *testing.T) {
-	ctx := ContextWithOtp(context.Background(), "123456")
+	ctx := ContextWithOtp(nil, "123456")
 
 	type fields struct {
 		apiMock *httptest.Server
