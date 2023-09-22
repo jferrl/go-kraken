@@ -10,6 +10,54 @@ import (
 // methods of the Kraken API.
 type Earn service
 
+// EarnFundsOpts .
+type EarnFundsOpts struct {
+	Amount     string `json:"amount"`
+	StrategyID string `json:"strategy_id"`
+}
+
+// Allocate allocates funds to the Strategy.
+// Docs: https://docs.kraken.com/rest/#tag/Earn/operation/allocateStrategy
+func (e *Earn) Allocate(ctx context.Context, opts EarnFundsOpts) (bool, error) {
+	body, err := newJSONBody(opts)
+	if err != nil {
+		return false, err
+	}
+
+	req, err := e.client.newPrivateRequest(ctx, http.MethodPost, "Earn/Allocate", body)
+	if err != nil {
+		return false, err
+	}
+
+	var v bool
+	if err := e.client.do(req, &v); err != nil {
+		return false, err
+	}
+
+	return v, nil
+}
+
+// Deallocate de-allocates funds from the Strategy.
+// Docs: https://docs.kraken.com/rest/#tag/Earn/operation/deallocateStrategy
+func (e *Earn) Deallocate(ctx context.Context, opts EarnFundsOpts) (bool, error) {
+	body, err := newJSONBody(opts)
+	if err != nil {
+		return false, err
+	}
+
+	req, err := e.client.newPrivateRequest(ctx, http.MethodPost, "Earn/Deallocate", body)
+	if err != nil {
+		return false, err
+	}
+
+	var v bool
+	if err := e.client.do(req, &v); err != nil {
+		return false, err
+	}
+
+	return v, nil
+}
+
 // StatusOpts represents the parameters to get the status of the last allocation or deallocation request.
 type StatusOpts struct {
 	StrategyID string `json:"strategy_id,omitempty"`
