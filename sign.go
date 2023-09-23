@@ -27,7 +27,7 @@ func NewSigner(s string) Signer {
 }
 
 // Sign signs the Kraken API request.
-// Docs: https://www.kraken.com/help/api#general-usage for more information
+// Docs: https://www.kraken.com/help/api#general-usage for more information.
 func (s Signer) Sign(v reqBody, path string) string {
 	sha := sha256.New()
 	sha.Write([]byte(v.nonce() + v.string()))
