@@ -329,3 +329,117 @@ func TestEarn_Allocations(t *testing.T) {
 		})
 	}
 }
+
+func TestEarn_Allocate(t *testing.T) {
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts EarnFundsOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    bool
+		wantErr bool
+	}{
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args:    args{},
+			wantErr: true,
+		},
+		{
+			name: "allocate",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "bool_result.json"),
+			},
+			args: args{
+				ctx: context.Background(),
+				opts: EarnFundsOpts{
+					Amount:     "0.01",
+					StrategyID: "ESRFUO3-Q62XD-WIOIL7",
+				},
+			},
+			want: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Earn.Allocate(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Earn.Allocate() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Earn.Allocate() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestEarn_Deallocate(t *testing.T) {
+	type fields struct {
+		apiMock *httptest.Server
+	}
+	type args struct {
+		ctx  context.Context
+		opts EarnFundsOpts
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    bool
+		wantErr bool
+	}{
+		{
+			name: "error building request",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, ""),
+			},
+			args:    args{},
+			wantErr: true,
+		},
+		{
+			name: "deallocate",
+			fields: fields{
+				apiMock: createFakeServer(http.StatusOK, "bool_result.json"),
+			},
+			args: args{
+				ctx: context.Background(),
+				opts: EarnFundsOpts{
+					Amount:     "0.01",
+					StrategyID: "ESRFUO3-Q62XD-WIOIL7",
+				},
+			},
+			want: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			baseURL, _ := url.Parse(tt.fields.apiMock.URL + "/")
+
+			c := New(tt.fields.apiMock.Client())
+			c.baseURL = baseURL
+
+			got, err := c.Earn.Deallocate(tt.args.ctx, tt.args.opts)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Earn.Deallocate() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Earn.Deallocate() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
