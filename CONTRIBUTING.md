@@ -44,7 +44,7 @@ git push origin feature-or-fix-name
 
 ## Review Process
 
-All contributions will be reviewed by our team. We appreciate your patience during this process.
+All contributions will be reviewed by the maintainer. We appreciate your patience during this process.
 
 ## Code of Conduct
 
