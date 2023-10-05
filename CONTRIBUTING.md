@@ -39,6 +39,7 @@ git push origin feature-or-fix-name
 ## Coding Guidelines
 
 [Uber Go Style Guide](https://github.com/uber-go/guide/blob/master/style.md)
+
 [Go Style Guide](https://google.github.io/styleguide/go/)
 
 ## Review Process
